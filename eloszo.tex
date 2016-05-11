@@ -1,0 +1,76 @@
+
+\chapter*{Előszó}
+
+%Önlab2 előszava:
+Az internet olyan kulcsfontosságú infrastruktúra napjainkban, amelynek fontos ismerni az állapotát és viselkedését. Önálló laboratóriumi feladatom során az internetes útvonalak automatizált mérésével és értelmezésével foglalkoztam. Az általam készített és továbbfejlesztett mérőrendszer a PlanetLab szervezet gépeit felhasználva méréseket végez és monitorozza az internet általuk látható részeit. Munkám során több új mérési funkciót fejlesztettem, valamint az új mérési forgatókönyvek implementálását egyszerűvé és kényelmessé tettem, a folyamatosan gyűlő adatokat könnyen feldolgozható formába alakítottam. Mindezeken felül fontos szempont volt a folyamatos, megbízható és hibatűrő működés, valamint a mérések felügyelete.
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Elvégzett munka tartalma:
+
+%Migráltam az adatmentés és adatkezelést MySQL-ről MongoDB-re, mert jobbnak tűnt, hogy nem merevek az adatstruktúrák és megférnek egymás mellett a régebbi formátumú adatok és a kísérleti, friss adatok is.
+%A folyamatos futtatás érdekében a RedHat Openshift felhős platformjára telepítettem az egész mérést, így ott folyamatosan elindul, fut, ment egyből adatbázisba. Valamint egy honlapon mutat pár visszajelzést, hogyan áll: http://python-limiere.rhcloud.com/
+%Több hibát javítottam, amiknek hála szinte bármilyen (akár új, váratlan) hiba előfordulásakor folytatják a mérést. Alapvetően függetlenítettem az egyes folyamatokat, amik felügyelni tudják a másikat és szükség esetén leállítják, újraindítják azokat.
+%A hibák és a futások felügyeletéhez szinte mindenhol bevezettem a logolást, így végigkövethető hol milyen hiba miatt nem volt sikeres a mérés.
+%Eddig csak traceroute mérés volt, de ezt kiegészítettem az iperf méréssel.
+%Ennek nyomán pedig egy viszonylag szép általánosan bevethető eljárást készítettem, ahol különböző parancsok időzített, egymáshoz illesztett indítását lehet levezetni. Például ugye a párhuzamos méréshez kellett ez.
+%Végül ugye elkészítettem az éllistából álló adatbázist amiben minden elérhető adat rendelkezésre áll (időpont, két ip cím, késleltetés, jitter ...)
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Önlab2 eredeti kiírás:
+%A labortéma a Forgalmi mérések az Interneten c. önálló labor kiírás testvértémája, és első sorban a mért adatok elemzését célozza: A laborfeladat célja méréseket végezni a nagy Interneten. A feladathoz az elmúl félévben korábbi önálló labormunka keretében készültek rövidebb python alapú szkriptek melyek az Interneten elérhető számos gép közötti forgalmat ill. annak viselkedését (pl. útvonalválasztási jellemzőit) mérik. Feladat lehet ezen mérések kivitelezése esetleg ha szükséges a scriptek továbbfejelsztése. A méréseket szeretnénk kielemezni, és következtetéseket levonni belőle a nagy Internet kinézetére és viselkedésére vonatkozólag.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Önlab1 előszava:
+%Az internet fejlődése napjainkban nehezen követhető, hiába az alapjait alkotó protokollok alapos ismerete. A megvalósított hálózatok üzleti, jogi vagy természetes eredetű okok miatt sokszor eltérnek az eredetileg elképzelttől.
+%Ezért az internet továbbfejlesztésének/újratervezésének egyik fontos feltétele a valóságos hálózatok ismerete. 
+%
+%Önálló laboratóriumi munkám során, hogy tapasztalatokat gyűjtsek az internet felépítéséről és a vizsgálatához szükséges technológiákról, méréseket végeztem a PlanetLab szervezet által elérhető számítógépek segítségével. A mérések célja az internet csomópontjai között lévő útvonalak és ezen útvonalak által létrehozott gráf feltérképezése és vizsgálata volt.
+
+\vspace{1.4cm}
+
+\noindent
+\textsc{\Huge \textbf{Feladat}}
+
+\bigskip
+%\indent
+
+%Önlab1 Feladat leírása
+A félév során a hallgató feladata a korábbi önálló laboratóriumi munkájának folytatása. A PlanetLab teszthálózat gépeinek segítségével végez internetes méréseket és tovább fejleszti azokat. A mérési eredményeket szűri és könnyen feldolgozható formában tárolja. Végül elemzéseket végez rajtuk.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Önlab1 Feladat leíása:
+%A félév során a hallgató feladata az internet valóságos működésének és felépítésének vizsgálata. A témához tartozó irodalmakat tanulmányozza, majd a PlanetLab teszthálózaton automatizált méréseket folytat. Az így kapott mérési eredményeket feldolgozza és elemzi.
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Önlab2 félév eleji feladat leírása:
+%Féléves feladat:
+%Internetes mérések tervezése, kivitelezése és elemzése,
+%amely az internet felépítését elemzi
+%és megvizsgálja az mptcp protokoll lehetséges előnyeit.
+%
+%A munka ütemezése:
+%
+%Előkészületek:
+%4-5. hét  A kivitelezendő mérések kidolgozása. Teszt mérések végzése.
+%
+%Mérnöki munkavégzés:
+%6-7. hét  Folyamatos mérések végzése és azok felügyelete.
+%
+%8-12.hét  A mérési eredmények aggregálása, feldolgozása és vizsgálata
+%
+%Dokumentálás:
+%13.  hét  Felkészülés a szóbeli és írásbeli beszámolóra.
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Önlab1 eredeti kiírás:
+%Az internet gyerekbetegségeinek tüneti kezelése mind komolyabb feladatot ró a szakemberekre. Egyre többen látják a megoldást az internet alapoktól való újragondolásában. Az általunk vizsgált kérdések érintik többek között a címzést, címkiosztást, útvonalválasztást, topológiát valamint az internet erősen elosztott és dinamikus jellegéből adodó nehézségeket. A laborfeladat célja megismerni az internet újragondolásának lehetséges új irányvonalait, ismertebb kezdeményezéseit. A félév második felében lehetőség nyílna alternatív hálózati technológiák elméleti és szimulációs és teszthálózati vizsgálatára ill. prototípus építésére.
+
