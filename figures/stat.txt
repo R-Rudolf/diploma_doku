@@ -1,0 +1,73 @@
+
+Offline count:  592
+
+===========================================================================
+
+Error count:77
+	error: [Errno 10061] No connection could be made because the target machine actively refused it
+
+Error count:75
+	'vserver ... suexec' is supported for running vservers only; aborting...
+
+Error count:63
+	AuthenticationException: Authentication failed.
+
+Error count:36
+	timeout: timed out
+
+Error count:9
+	SSHException: Error reading SSH protocol banner
+
+Error count:2
+	EOFError
+
+Error count:2
+	SSHException: Error reading SSH protocol banner[Errno 10054] An existing connection was forcibly closed by the remote host
+
+Error count:2
+	Domain budapestple_cloud not found
+
+Error count:1
+	Traceback (most recent call last):
+  File "/usr/lib64/python2.7/site.py", line 62, in <module>
+    import os
+  File "/usr/lib64/python2.7/os.py", line 398, in <module>
+    import UserDict
+  File "/usr/lib64/python2.7/UserDict.py", line 83, in <module>
+    import _abcoll
+  File "/usr/lib64/python2.7/_abcoll.py", line 11, in <module>
+    from abc import ABCMeta, abstractmethod
+  ImportError: cannot import name ABCMeta
+
+Error count:1
+	SSHException: No existing session
+
+Error count:1
+	/bin/su: user budapestple_cloud does not exist
+
+Error count:1
+	Traceback (most recent call last):
+  File "/usr/lib64/python2.7/site.py", line 62, in <module>
+    import os
+  File "/usr/lib64/python2.7/os.py", line 725, in <module>
+    _copy_reg.pickle(stat_result, _pickle_stat_result, _make_stat_result)
+  AttributeError: 'module' object has no attribute 'pickle'
+
+Error count:1
+	Traceback (most recent call last):
+  File "/usr/sbin/lxcsu-internal", line 277, in <module>
+  File "/usr/sbin/lxcsu-internal", line 270, in main
+  OSError: [Errno 5] Input/output error
+
+============================================================================
+
+Output count:138
+	Fedora release 8 (Werewolf)
+
+
+Output count:19
+	Fedora release 14 (Laughlin)
+
+
+Output count:17
+	CentOS release 6.4 (Final)

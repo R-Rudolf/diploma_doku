@@ -1,0 +1,84 @@
+\documentclass[11pt, a4paper]{report}
+%\documentclass[11pt,a4paper,oneside]{report}
+
+%Packages
+\usepackage[hungarian]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+%
+\usepackage{hyperref}
+\usepackage{wrapfig}
+\usepackage{subfigure }
+\usepackage[margin=80pt]{geometry}
+\usepackage{geometry}
+\usepackage{amsmath}
+\usepackage{tabularx}
+\usepackage{tabulary}
+%\usepackage{url}
+\usepackage{multicol}
+\usepackage{multirow}
+\usepackage{setspace}
+\usepackage[table,xcdraw]{xcolor}
+%\usepackage[acronym]{glossaries}
+\usepackage{longtable}
+\usepackage{titlesec}
+
+
+
+\usepackage[procnames]{listings}
+\usepackage{color}
+
+
+\definecolor{keywords}{RGB}{255,0,90}
+\definecolor{green}{RGB}{0,0,113}
+\definecolor{red}{RGB}{160,0,0}
+\definecolor{comments}{RGB}{0,150,0}
+ 
+\lstset{language=Python, 
+        basicstyle=\ttfamily\small, 
+        keywordstyle=\color{keywords},
+        commentstyle=\color{comments},
+        stringstyle=\color{red},
+        showstringspaces=false,
+        identifierstyle=\color{green},
+        procnamekeys={def,class}}
+
+\pagestyle{plain}
+\setlength{\parindent}{12pt} % magyar nyelvû dokumentumokban jellemzõ
+\setlength{\parskip}{0pt}    % magyar nyelvû dokumentumokban jellemzõ
+\frenchspacing
+\setlength{\columnsep}{1cm}
+\linespread{1.5}
+
+\includeonly{
+	cimlap,
+	eloszo,
+	fejezet1,
+	zaras,
+	fuggelek,
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{document}
+
+\include{cimlap}
+
+\include{eloszo}
+
+\tableofcontents
+
+\include{fejezet1}
+
+\include{zaras}
+
+\newpage
+\bibliographystyle{plain}
+\bibliography{mybib}
+
+%\listoffigures\addcontentsline{toc}{chapter}{Ábrák jegyzéke}
+%\include{appendices}
+
+\include{fuggelek}
+
+\end{document}
