@@ -1,104 +1,18 @@
-\chapter{A mérési folyamatok fejlesztései}
-A mérési rendszer részeként, de mégis önálló feladatként új mérések lettek bevezetve, amelyek az internetet alkotó útvonalakról új információkat gyűjtenek össze. A sávszélesség mérés egy fontos mérföldkőnek számít, amely segítségével jobb rálátásunk nyílik az eddig felmért útvonalak minőségére, viselkedésére. A sávszélesség mérésre több mérést végző szoftver is használva lett.
+\chapter{Fejezet}
 
 
-\section{Iperf sávszélesség mérések}
-A sávszélesség mérésre először használt szoftver az iperf volt. Választásunk a könnyű használhatóság és az előzetes ismeretek alapján esett rá. Utóbb azonban a mérési eredmények kiértékelésekor és a mérési beállítások értelmezésekor nehézségekbe ütköztünk. Az elvégzett mérések eredményeit nem tudtuk nagy biztonsággal megmagyarázni, valamint az egyes átviteli tulajdonságokat, mint jitter vagy elveszett csomagok, körülményesen tudtuk csak kinyerni. A későbbiekben ezért új sávszélesség mérő eszközt kerestünk és építettünk be a mérési rendszerbe.
+Lényegi tartalom (25-30 oldal):
+Mérési elrendezés (5 oldal): traceroute, iperf, mérési forgatókönyvek, PlanetLab
+Fejlesztési megfontolások (8-10 oldal): python, mongodb, logolás, email küldés, weboldal, hibák függetlenítése, megbízhatóságnövelő megfontolások
+Mérési eredmények (7-10 oldal): kinyert mérések tartalma(delay, jitter, link, AS info, Geolocation), mérések mennyisége, mérések minősége
+Adattisztítás, feldolgozás (5 oldal): Hibák kiszűrése, gráf reprezentálás, statisztikák
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Címszavakban a tartalom:
-%Az alapötlet (mptcp) bemutatása
-%Mérési összeállítás
-%Próba mérések eredményei
-%Elvetés okai
 
-\section{Időzített mérési forgatókönyvek}
-Az iperf mérések implementálásakor több új eljárás kidolgozására volt szükség a mérést menedzselő szoftverben. A korábbi traceroute mérések egyetlen parancs távoli futtatásából álltak, amelyek futási eredményét tároltuk el mérési eredményként. Az iperf és más sávszélesség mérő szoftverek működéséhez azonban szükséges mind egy adatcsomagokat küldő és egy adatcsomagokat fogadó példány futtatása a két különböző távoli gépen. Ennek lebonyolításához a mérést lebonyolító programnak több szálon kell futnia, a két távoli kódfuttatást egyszerre kell végeznie. Először az adatcsomagok fogadását (szerver oldal) végző programot kell elindítani, majd csak ezt követően lehet csak a mérést megkezdeni az adatcsomagokat küldő program (kliens oldal) elindításával. A mérést követően a szervert pedig le kell állítani. Ez a szituáció tovább bonyolódik, ha két sávszélesség mérést párhuzamosan szeretnénk végezni. Ez egy fennálló igény, mivel a későbbiekben az MPTCP\footnote{Multipath Transfer Protocol: Több párhuzamos TCP adatfolyamon végez kommunikációt a felsőbb rétegek felé egyetlen TCP kapcsolatot emulálva.} protokoll lehetséges viselkedését is vizsgálni szeretnénk.
 
-Ezeket a lépéseket általánosítva olyan mérési forgatókönyvek létrehozását támogatja már a mérési rendszer, amely bármilyen távoli parancsok időzített futtatását garantálja. Ennek kialakítása a lehető legrugalmasabbra lett tervezve, amelynek működését a függelékben található példakód mutatja be. A kód egyszerűségének ellenére a mérés teljesen menedzselt, bármilyen hiba keletkezése le van kezelve és megfelelően naplózva és a mérési eredményben jelezve van. Garantálva van a helyes időzítés, a párhuzamos futás és a helyes leállás.
-
-A mérési forgatókönyvek rendkívül hasznos eszközzé váltak, a segítségükkel új mérések implementálása kényelmes és gyors.
+\section{Szekció}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Címszavakban a tartalom:
-%Alapelv bemutatása
-%Kisebb problémák kezelésére kitérés: időzítés, többszálúság, kliens szerver folyamatok leállítása
-%Demo milyen egyszerű új mérés készítése
-
-\section{D-ITG sávszélesség mérések}
-Az iperf mérések elkészítését követően új sávszélesség mérő programot kerestünk, hogy minél jobban értelmezhető mérési eredményeket kapjunk. A témában való irodalomkutatást követően a választásunk a nápolyi egyetem D-ITG\footnote{Distributed Internet Traffic Generator. Honlapja: http://traffic.comics.unina.it/software/ITG/} szoftverére esett az egyértelmű eredmények és a megbízható, tudományos igényű működése miatt.
-
-Ezen mérés implementálását Haja Dávid BSC hallgató végezte el szakdolgozatának részeként. Megjegyzendő, hogy ő még nem tudta teljesen kihasználni az előző szakaszban részletezett időzített méréseket.
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Címszavakban a tartalom:
-%Csak ismertetése a dolognak
-%Hangsúlyozni, hogy ez csak az én munkám által jöhetett létre és milyen egyszerű volt új mérést implementálni
-
-\pagebreak
-
-\section{Teljes gráfos traceroute mérések}
-Az internetes útvonalakat a traceroute programmal derítjük fel. Korábban ezek az útvonalak minden esetben egy központi gép felé irányultak. Az új fejlesztéseknek köszönhetően már az összes elérhető PlanetLabo-os gép közötti útvonalakat felderíti a mérés. A traceroute parancs paramétereit pedig úgy változtattuk meg, hogy egy közbülső számítógép felé 10 mérési próbát indítunk. Ennek segítségével már nem csak az útvonalat tudjuk meghatározni, hanem az útvonal éleinek az egyes tulajdonságait is, mint késleltetés, késleltetés ingadozás.
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Címszavakban a tartalom:
-%Gráfok rajzoltatása
-
-\section{Geolokációs és AS információk}
-Az internetes útvonalakat alkotó IP címekről több új információt tud kinyerni a mérési rendszer. Ilyen az ip címhez tartozó autonóm rendszer azonosítója, valamint a becsült geolokációs elhelyezkedés. Ezekhez új Python szkriptek lettek készítve, amelyek ingyenes online szolgáltatásokat vesznek igénybe. A nagy feldolgozandó adatmennyiség és a sokszor lassú kapcsolódás miatt helyi gyorsítótárt hoztam létre a lekérések gyorsítására.
-
-Ezen információk segítségével egy gráfot tudtam létrehozni amely a mért útvonalakat alkotó autonóm rendszerek közötti kapcsolatokat ábrázolja. Az így kapott gráfot a mérési rendszer monitorozási honlapján is meg lehet tekinteni, amelyről egy példa ábra a függelékben található.
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Címszavakban a tartalom:
-%Első térképes minták bemutatása
-%AS gráf bemutatása
-%AS gráf egyértelműsége? Hasonló mérések melletti létjogosultság
-
-\pagebreak
-
-\section{Létrehozott adatbázis bemutatása}
-Zárásként bemutatom a létrehozott adatbázis fontosabb adathalmazait, amelyek további elemzések alapját fogja képezni.
-
-\subsection*{Éllista}
-A legfontosabb eredmény az internetes útvonalakat alkotó gépek közötti kapcsolatokról szolgáltat mérési eredményeket. Az objektum amelyről a mérés készült egy internetes link, a kinyert információk a következők:
-
-\begin{itemize}
-\item \textbf{delay:} késleltetés a két gép közötti kapcsolaton
-\item \textbf{rtt:} A from számítógéphez végzett körülfordulási idő a mérést végző measurer\_ip számítógéptől
-\item \textbf{time:} A mérés időpontja
-\item \textbf{jitter:} Késleltetés ingadozás a két számítógép között
-\item \textbf{measurer\_ip:} A mérést végző számítógép (ahol a traceroute parancs fut)
-\item \textbf{target\_ip:} Az útvonalmérés célpontja
-\item \textbf{to:} A mérést végző számítógéptől távolabbi csomópont információi: city, country, longitude, latitude, ip, asn
-\item \textbf{from:} A mérést végző számítógéphez közelebbi csomópont információi: city, country, longitude, latitude, ip, asn
-\end{itemize}
-\pagebreak
-\subsection*{PlanetLab gépek állapota}
-A PlanetLab gépek eléréséről (az operációs rendszeréről) és hiba esetén a hibaüzenetek aggregált statisztikája. A következő adatokat tartalmazza:
-
-\begin{itemize}
-\item \textbf{erroneous:} Sikertelen csatlakozások száma (online gépek esetén)
-\item \textbf{succeed:} Gépek száma, amelyeken sikeres volt a távoli parancsfuttatás (cat /etc/issue)
-\item \textbf{online:} A ping parancssal elérhető gépek száma
-\item \textbf{offline:} A ping parancssal nem elérhető gépek száma
-\item \textbf{outputs:} Az összes különböző kimenet felsorolása a hozzá tartozó előfordulások számával.
-\item \textbf{error\_types:} Az összes különböző hibatípus felsorolása a hozzá tartozó előfordulások számával
-\item \textbf{ts:} A mérés időpontja
-\end{itemize}
-
-\subsection*{AS gráf él információi}
-A korábban részletesen bemutatott AS gráf ezen kollekció adataiból lett felépítve:
-
-\begin{itemize}
-\item \textbf{asn:} A autonóm rendszer azonosító száma
-\item \textbf{core\_ips:} Az autonóm rendszeren belül észlelt ip címek
-\item \textbf{gateways\_to\_as:} Az autonóm rendszerből másikba vezető kapcsolatok listája. A másik AS-hez irányuló ip cím párok (egyik AS kimeneti címe, másik AS bemeneti címe) listáit is tartalmazza.
-\end{itemize}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Címszavakban a tartalom:
-%PlanetLab statisztika
-%Éllista reprezentáció (Jitter, tömérdek info egy helyen)
-%AS gráf
+%
+% 
