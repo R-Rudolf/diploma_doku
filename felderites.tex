@@ -1,3 +1,82 @@
 
-\section{Az internet felderítése}
-(6 oldal): CAIDA, Archipelago és egyéb mérőrendszerek, PlanetLab, útvonal eltérítések esetei
+\section{Internet felderítő projektek}
+
+%(6 oldal): CAIDA, Archipelago és egyéb mérőrendszerek, PlanetLab, útvonal eltérítések esetei
+
+
+Jelen fejezetben a legfontosabb Internet felderítését célzó szervezeteket és projekteket ismertetem, illetve megemlítem a legfontosabb ezeket felhasználó cikkeket.
+
+\subsection{Internet elemző központ: CAIDA}
+
+\textbf{2-3 oldal kb}
+
+A CAIDA (Center for Applied Internet Data Analysis)\footnote{\url{http://www.caida.org/home/}} 
+
+
+
+is a collaboration of government, research, and commercial entities working together to improve the Internet.
+
+Alapvetően 3 fő területre koncentrálja munkáját:
+
+\begin{itemize}
+\item Research and Analysis	Analyze
+\item Measurements and Infrastructure
+\item Data and Tools.
+\end{itemize}
+
+további tartalom majd innen: http://www.caida.org/home/about/progplan/progplan2014/
+%% fél oldal kb eddig
+
+második oldal a 3 fő tématerületének a kifejtése, témánként fél oldal.
+
+Számunkra legfontosabb.. felsorolás a projektjeik közül
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{A DIMES mérési rendszer}
+1.5-2 oldal
+
+Honlapja: http://www.netdimes.org/new/
+A DIMES honlapja gyakorlatilag nem működik, mindenféle hibákba ütközik (de legalább elérhető). A legutolsó hír rajta vagy bejegyzése 2013-ban íródott. Nem erléhetőek sajnos így az általuk elért adat sem, sem az infók róla :(
+A publikációjukból tudunk legjobban kiindulni: link (2000 és 2013 közöttiek)
+A saját mérési adataik elérhetőek: link
+Lehet érdemes felvenni velük a kontaktot, hogy külsős fél mennyire tudná most futtatni?
+Email: support@netdimes.org
+A projekt résztvevői: link
+A projekt fóruma: link
+A fórumon van egy “friss” szál ahol megbeszélik, hogy ez egy halott projekt (link).
+Ebben a beszélgetésben egy lényegretörő hozzászólás:
+Since I found the project I've now gotten rid of all Windows machines, and the Linux version never worked anyway. I can't run the agent either way.
+
+\subsection{MLAB}
+2 oldal
+
+Elég nagy és működő félig üzleti szervezetnek tűnik. A Google is részese, gondolom ellenőrizni akarják hogy az ISP-k jól működnek-e. Egyik eszközük például külön kutatja, hogy mi a legszűkebb keresztmetszet az ügyfél kapcsolatában.
+Honlapjuk: http://www.measurementlab.net/
+Mobil mérésekkel is foglalkoznak, készítettek egy mobil applikációt ami adatokat gyűjt mérésekről. 2012 és 2013-ban kapott adatok elérhetőek: https://www.measurementlab.net/tools/mobiperf/
+
+\subsection{SamKnows}
+1 oldal
+
+Britt egyetemi kezdeményezés volt ami azt tűzte ki céljául, hogy a hétköznapi emberek jobban tudjanak ISP-t választani. Az EU és az amerikai FCC is felkarolta és állami megrendelédekre felméréseket végez a népesség elérhető internetes sávszélességéről. Főleg az a fókuszuk, hogy az ISP-k milyen végfelhasználói sávszélességet és kapcsolati minőséget adnak. Speciális képessége, hogy felméri a különböző felhasználások diszkriminációját. Azaz mérik a torrent, VOIP, és hasonlók(email, ftp, web, youtube, netflix) kiszolgálását.
+
+
+\subsection{Kisebb Internet mérő projektek}
+
+A fentiekben felsoroltakon kívül még számos kisebb internet mérést célzó projekt létezik még melyek közül a továbbiakban kettőt emelek ki.
+
+Az IRL mérési rendszer \footnote{\url{http://irl.cs.tamu.edu/projects/sampling/}}
+
+Sampling Internet structure and its service availability have always been important issues in Internet research. This project aims to develop mechanisms for discovering available services in the Internet using scalable end-to-end measurements, facilitate delay sampling between arbitrary hosts using the existing DNS infrastructure, perform more accurate bandwidth estimation, and build router-level maps of the Internet using non-intrusive traceroute to known destinations. We are also working on techniques for fingerprinting OS and server implementations using low-overhead end-to-end methods.
+
+Cikkek róla...
+
+Az Az iPlane mérési rendszer \footnote{\url{http://iplane.cs.washington.edu/}}
+
+
+Alapvetően egy mellék képessége az internetes utak  emgfigyelése, mérése. A lényege az internetes útvonalak QoS becslése, jóslása a korábbi mérésekből, valamint ennek a felahsználása a felsőbb szolgáltatások javítására. Szintén PlanetLab os gépeket használ, valamint további publikus traceroute szervereket a mérések elvégzésére.
+Rengeteg traceroute mérést végeznek, még napjainkban is, ezek elvileg elérhetőek bárki által. (Akár mi is hasznosíthatnánk?)
+Nem elérhető a rendszerük forrása, kicsit homályos a működése (valószínűleg a publikációjukból meg lehetne ismerni).
+Az iPlane egy Diploma  munka eredménye, itt van maga a dimploma: link
+
+	iPlane is a scalable service providing accurate predictions of Internet path performance for emerging overlay services. Unlike the more common black box latency prediction techniques in use today, iPlane builds a structural model of the Internet. We construct an annotated map of the Internet and predict end-to-end performance by composing measured performance of segments of known Internet paths. This method allows us to accurately and efficiently predict latency, bandwidth, capacity and loss rates between arbitrary Internet hosts. We have studied the feasibility and utility of the iPlane service by applying it to several representative overlay services in use today: content distribution, swarming peer-to-peer filesharing, and voice-over-IP. In each case, we observe that using iPlane's predictions leads to a significant improvement in end user performance. 
