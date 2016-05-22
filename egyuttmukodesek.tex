@@ -6,7 +6,7 @@
 
 A mérési rendszer fejlesztése 2015 tavaszi félévében kezdődött önálló laboratóriumi munkaként. Az első működő verziót követően további témakiírások készültek hozzá kapcsolódóan. Ezek közreműködési lehetőséget biztosítottak a hallgatóknak, hogy saját munkájuk során a meglévő mérési rendszert vagy annak eredményeit felhasználják és kiegészítsék azt. A következőkben ezen munkák kerülnek bemutatásra. Az egyes leírások fontos eleme a mérési rendszerhez való hozzáadott értékek és a rendszer felhasznált szolgáltatásainak kiemelése.
 
-Ezen együttműködéseknél rendkívül fontos volt az ismeret átadás, és a munkák koordinálása. A konzulensemmel, Dr Heszberger Zalánnal, végig gondot fordítottunk arra hogy minden szükséges tudást átadjunk a munkákhoz, és felügyeljük azok végrehajtását. Minden esetben elégedettek voltunk a közös munka gyümölcsével, és sokszor kellemesen meglepett milyen távolra vezettek az általunk elindított témák.
+Ezen együttműködéseknél rendkívül fontos volt az ismeret átadás, és a munkák koordinálása. A konzulensemmel gondot fordítottunk arra hogy minden szükséges tudást átadjunk a munkákhoz, és felügyeljük azok végrehajtását. Minden esetben elégedettek voltunk a közös munka gyümölcsével, és sokszor kellemesen meglepett milyen távolra vezettek az általunk elindított témák.
 
 Az egyes fejezetcímek az elkészült dolgozatok címének felelnek meg.
 
@@ -20,14 +20,13 @@ Az egyes fejezetcímek az elkészült dolgozatok címének felelnek meg.
 Haja Dávid alapszakos hallgató a szakdolgozataként választotta az általunk kiírt témát 2015 őszi félévében. Munkája során megismerte az Elméleti Áttekintés fejezet tudásanyagát, valamint a mérőrendszer felépítését. Fő tevékenységei a PlanetLab hálózat komolyabb megismerése volt, valamint a mérési rendszer kiegészítése sávszélesség kapacitás méréssel.
 
 \subsection*{PlanetLab rendszerének megismerése}
-A mérések végrehajtása során a PlanetLab hálózat gépeinek elérésével gondjaink akadtak. A tanszéken üzemelő szerverek nem megfelelően voltak felkonfigurálva, nem üzemeltek rendeltetésszerűen. A kölcsönösség elve alapján így nem fértünk hozzá a PlanetLab hálózatának szervereihez.
-Haja Dávid közreműködésével az említett szerverek helyre lettek állítva. Ezen munkája során mély ismeretekre tett szert a PalnetLab szervezet működésével és a szerverek felépítésével kapcsolatban.
+A mérések végrehajtása során a PlanetLab hálózat gépeinek elérésével gondjaink akadtak. A tanszéken üzemelő szerverek nem megfelelően voltak felkonfigurálva, nem üzemeltek rendeltetésszerűen. A kölcsönösség elve alapján így nem fértünk hozzá a PlanetLab hálózatának szervereihez. Az említett szerverek helyre lettek állítva. 
 
 \subsection*{D-ITG sávszélesség mérés}
-A mérési rendszer eredetileg csak iperf sávszélesség mérésekkel rendelkezett, mivel ez a szoftver a legtöbb linux alapú rendszereken, így a PlanetLab gépein is, előre telepítve volt. A mérések színvonalának érdekében azonban Haja Dávid feladata volt felmérni mely további sávszélességmérő rendszerek nyújthatnak megbízható és részletes mérési adatokat. Kutatásai során választása a D-ITG-re (Distributed Internet Traffic Generator) esett. Ez a mérőszoftver bír az elvárható alapképességekkel, mint a kinyerhető adatok széles választéka, protokoll támogatások, párhuzamos folyamok kezelése, valamint sztochasztikus adatküldő profilok is beállíthatóak. A program azonban nem elérhető a publikus csomagkezelő rendszerekből, ahonnan egyszerűen telepíthetőek lennének. Emiatt munkájának nagy része volt a szoftver becsomagolása a PlantLab gépeinek megfelelő RPM formátumba. 
-Az így elkészült telepítőcsomagok automatizált telepítését az Ansible szoftverrel oldotta meg.
+A mérési rendszer eredetileg csak iperf sávszélesség mérésekkel rendelkezett, mivel ez a szoftver a legtöbb Linux alapú rendszereken, így a PlanetLab gépein is, előre telepítve volt. A mérések színvonalának érdekében az D-ITG (Distributed Internet Traffic Generator) sávszélességmérő rendszer is beépítésre került. Ez a mérőszoftver bír az elvárható alapképességekkel, mint a kinyerhető adatok széles választéka, protokoll támogatások, párhuzamos folyamok kezelése, valamint sztochasztikus adatküldő profilok is beállíthatóak. A program azonban nem elérhető a publikus csomagkezelő rendszerekből, ahonnan egyszerűen telepíthetőek lennének. Emiatt a szoftvernek egy RPM formátumú telepítőcsomagja készült el, amely megfelel a PlanetLab gépeinek rendszerének. 
+Az így elkészült telepítőcsomagok automatizált telepítése az Ansible szoftverrel lett végrehajtva.
 
-Munkájának gyümölcseként új mérési lehetőségekkel bővült az eredeti rendszer. Az új mérési típus nem jöhettek volna létre a mérési rendszer rugalmassága által, a rendszer forráskódjában egyetlen osztály létrehozására volt szükség az új funkció implementálásához. Az új képességeket jól mutatja be az alábbi mérési eredmény, amely két különböző, ám hálózati szempontból közel lévő cél felé indít sávszélesség méréseket. 
+Ilyen módon új mérési lehetőségekkel bővült az eredeti rendszer. Az új mérési típus nem jöhetett volna létre a mérési rendszer rugalmassága által, a rendszer forráskódjában egyetlen osztály létrehozására volt szükség az új funkció implementálásához. Az új képességeket jól mutatja be az alábbi mérési eredmény, amely két különböző, ám hálózati szempontból közel lévő cél felé indít sávszélesség méréseket. 
 
 \begin{figure}[!ht]
 	\centering
@@ -57,7 +56,7 @@ A \ref{fig:d-itg-measure} ábrán látható mind a négy részeredmény ugyanahh
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Kocsmár Bence alapszakos hallgató szakdolgozataként választotta a konzulensemmel együtt kiírt témánkat a 2016-os év tavaszi félévében. Közreműködése mutatja a legjobban a mérési rendszerben lévő potenciált, ez volt az első olyan munka amely nem a mérések végzéséhez járult hozzá, hanem a kinyert adatokat dolgozta fel. Munkája során a traceroute alapú mérésekből kinyert ip útvonalak adatait dolgozta fel. A BGP útvonalhirdetések alapján felmért AS útvonalakkal szemben ilyen módon az útvonalakon való csomagkésleltetési idők is rendelkezésre álltak, ami többlet információkkal szolgált.
+Kocsmár Bence alapszakos hallgató szakdolgozataként választotta a mérési rendszerhez kapcsolódó témakiírást a 2016-os év tavaszi félévében. Közreműködése mutatja a legjobban a mérési rendszerben lévő potenciált, ez volt az első olyan munka amely nem a mérések végzéséhez járult hozzá, hanem a kinyert adatokat dolgozta fel. A traceroute alapú mérésekből kinyert ip útvonalak adatai lettek feldolgozva. A BGP útvonalhirdetések alapján felmért AS útvonalakkal szemben ilyen módon az útvonalakon való csomagkésleltetési idők is rendelkezésre álltak, ami többlet információkkal szolgált.
 
 A mérési rendszer által kinyert adatok több adatfeldolgozási folyamaton mentek keresztül, melynek során külön adatstruktúrában lettek tárolva az autonóm rendszerek belső csomagtovábbítási tulajdonságai és az AS szintű csomagtovábbítási információk. Ezt a feldolgozási lépést követően az azonos forrás-cél útvonalakhoz tartozó adatok aggregálásra kerülte, hogy később historikus elemzést lehessen rajtuk végezni.
 
@@ -101,16 +100,16 @@ A mérések során leghosszabb belső hop számmal az amerikai Cogent tier 0-ás
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Patkó Ákos alapszakos hallgató önálló laboratóriumi témaként választotta a mérési rendszerhez tartozó kiírásunkat a 2016-os tavaszi félévben. Munkája során korábbi üzemeltetési problémák megoldásán dolgozott, valamint egyéb fejlesztéseket eszközölt a könnyebb telepíthetőség és üzemeltethetőség érdekében.
+Patkó Ákos alapszakos hallgató önálló laboratóriumi témaként választotta a mérési rendszerhez tartozó kiírásunkat a 2016-os tavaszi félévben. A korábbi üzemeltetési problémák megoldása, valamint a könnyebb telepíthetőség és üzemeltethetőség érdekében egyéb fejlesztéseket szerepeltek a témakiírás céljaiként.
 
 \subsection*{A mérési rendszer felhő alapú üzemeltetése}
 A mérési rendszer 2015 tavaszán az egyetem egyik magánhasználatú gépén üzemelt. Ezen időszak során többször állt le a rendszer a nem megfelelő üzemeltetési környezet miatt. Ezt javítandó 2015 őszén a RedHat cég által elérhető Openshift felhős platformra költöztettük a rendszert, egy ingyenes csomagot felhasználva. A használt csomag korlátai újabb problémákat okoztak.
 
-Patkó Ákos munkája során felmérte és összehasonlította a mérési rendszer igényeihez illeszkedő felhős szolgáltatásokat. Választása a DigitalOcean cég egyik alapcsomagjára esett.
-A mérési rendszer és annak függőségeinek telepítését követően a mérési adatok könnyű elérése érdekében az adatbázishoz tartozó webes felületet is telepített.
+A mérési rendszer igényeihez illeszkedő felhős szolgáltatások össze lettek hasonlítva, amely során fel lettek mérve azok a mérésekhez kapcsolódó képességeik. A DigitalOcean cég egyik alapcsomagja felelt meg a legjobban az igényekhez.
+A mérési rendszer és annak függőségeinek telepítését követően a mérési adatok könnyű elérése érdekében az adatbázishoz tartozó webes felület is telepítésre került.
 
 \subsection*{A mérési rendszer konténerizációja}
-A könnyebb telepíthetőség érdekében a Docker szoftver által támogatott konténer formátumba is becsomagolta. Ezt felhasználva a mérési rendszer az összes függőségeivel együtt könnyen telepíthető és indítható.
+A könnyebb telepíthetőség érdekében a Docker szoftver által támogatott konténer formátumba is be lett csomagolva a mérési rendszer. Ezt felhasználva a rendszer az összes függőségeivel együtt könnyen telepíthető és indítható.
 A felhasználónak/adminisztrátornak nem szükséges manuálisan minden egyes komponenst telepíteni, felkonfigurálni és elindítani. Ezek mind egybecsomagolva telepíthetőek és elindíthatóak pár Docker paranccsal.
 
 
