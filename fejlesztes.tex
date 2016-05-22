@@ -1,3 +1,38 @@
 
 \section{Fejlesztési megfontolások}
 (8-10 oldal): python, mongodb, logolás, email küldés, weboldal, hibák függetlenítése, megbízhatóságnövelő megfontolások
+
+
+\subsection{Áttérés a MongoDB adatbázis használatára}
+Az előző önálló laboratóriumi munkám során SQLite adatbázist használtam a mérési eredmények tárolására. Választásom azért esett rá, mert az jól ismert SQL lekérdezési nyelvet támogatja és a Lite változat könnyen/kényelmesen használható a Python programozási környezetből, valamint egyszerű fájlként van tárolva az adatbázis. A fejlesztés során azonban körülményes volt az fejlesztés közben változó struktúrájú adatok tárolása. Egy új mérési attribútum bevezetésekor új adattáblát kellett létrehozni, a régi adatokat pedig megfelelően importálni. A folyamatos fejlesztés során a többször előforduló hasonló adatkonverziók feleslegesen vettek el időt a mérésekre való fókuszálás helyett. Ezen felül az adatok feldolgozása is erőforrás igényes volt, mert a komplexebb adatfeldolgozási lépések Python szkripteken futottak amelyek többször fordultak újra az SQLite adatbázishoz.
+
+Ezen problémák megoldására kerestem más adatbázis megoldásokat, amelyek jobban illeszkednek a hasonló erősen fejlesztés alatt álló rendszerek igényeinek. A relációs adatbázisokon kívül megismerkedtem a dokumentum alapú adatbázisokkal, amelyek nem rendelkeznek szigorú adatstruktúrákkal. Egy kollekcióban (az adattáblákhoz hasonló elem) többféle felépítésű adatelem is elhelyezkedhet. Ez olyankor hasznos, ha fejlesztés közben változik a tárolt adat vagy egyes tulajdonsága miatt más adatelemekkel is rendelkezik. Ilyen az én esetemben egy hibás mérés adateleme, amelyben extra a hibát leíró adatelem is van, cserébe a méréshez tartozók hiányoznak. Ezek könnyen kezelhetően együtt tudnak élni egy ilyen dokumentum alapú adatbázisban. A választáson végül a MongoDB-re esett, a széleskörű adatfeldolgozási támogatása miatt. Egyes komplexebb feldolgozási lépéseket akár azonnal az adatbázisban el lehet végezni, a többfokozatú adataggregálási rendszerének és a JavaScript alapú map-reduce eljárásnak hála.
+
+A választás meghozta eredményét, mivel az első tanulási időszakot követően felgyorsultak az új adatfeldolgozások fejlesztése és megfelelő keretek között könnyen együtt élhetnek a régebbi struktúrájú mérések az újakkal.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Címszavakban a tartalom:
+%rugalmas adatstruktúrák
+%fejlesztés közbeni átmeneti állapotok jó kezelése
+%Aggregálási képességek hangsúlyozása
+%(komplex lekérdezése)
+
+
+\subsection{Megbízhatósági törekvések}
+A mérési rendszer bizonytalan körülmények között is megfelelően kell hogy működjön. A PlanetLab hálózatában rendkívül sokféle számítógép található, amelyek karbantartása sok esetben nem megfelelő. Korábban olyanra is akadt példa, hogy egy PlanetLab-os számítógép rendellenes viselkedése megállította az egész mérési folyamatot. Az ehhez hasonló hibák elkerülésére valamint a hibák minél hamarabbi észlelésére nagy figyelem lett fordítva a mérési rendszer fejlesztésekor.
+
+\subsubsection*{Hibalehetőségek függetlenítése}
+A mérés egy folyamatos ciklusból áll: A PlanetLab gépeit megpróbálja elérni, azokon a megfelelő méréseket elvégezni, végül eltárolni az eredményeket, majd egy újabb géppel folytatni a mérést.
+Korábban egy hiba fenntarthatta az egész mérést. Ennek elkerülése miatt két programszálra lett bontva a folyamat: Egy központi program folyamatosan iterál a PlanetLab gépein és egy újabb független programot indít a mérendő gép címét paraméterként megadva. A hívott program bármilyen hibába ütközik arról értesül a főprogram, de nem tudja leállásra kényszeríteni azt. Az alprogram futásának pedig egy félperces maximálisan megengedett időablaka van, amelyet ha meghalad automatikusan leállításra kerül és egy újabb méréssel folytatódik a ciklus.
+
+\subsubsection*{Maximálisan megengedett időkeret elve}
+Az maximálisan megengedett időkeret elvét több másik folyamatra is bevezettem. A mérés során ha bármely lépése a folyamatnak időkorlátba ütközik a hiba oka fel lesz tüntetve a mérésről készült jelentésben. Ilyen módon könnyen kideríthető a hiba oka.
+
+\subsection*{Hibanaplók készítése}
+A fejlesztés kezdeti szakaszában ha hiba fordult elő a kódban az viszonylag hamar kiderült és a fejlesztőkörnyezetben kényelmes eszközök álltak rendelkezésre, hogy a kiderüljön a hiba oka. Később amikor a mérés folyamatosan futott nagyban feltartotta a megoldását, hogy a hiba egyetlen jelensége az volt, hogy nem került mentésre egy újabb sikeres (vagy akár sikertelen) mérés sem. Ennek megoldására a mérésnek szinte miden szintjén be lett vezetve a hibanapló írása. Így a mérés állapota és az esetleges hibák forrásai egyből elérhetővé váltak. A felhős platformon pedig a hibanaplók akár a weboldalon egyből megtekinthetővé váltak.
+
+\subsubsection*{Felmerülő hibák kategorizálása, előfordulásuk monitorozása}
+Mint korábban említettem a PlanetLab hálózatán sok nem karbantartott gép is jelen van, emiatt a hivatalosan elérhető 1030 gépből átlagosan csak 400 elérhető ping paranccsal, amelyek közül átlagosan csak 200-hoz lehet sikeresen ssh kapcsolatot felépíteni és parancsot futtatni. A géppark állapotáról ezért óránként egy felmérés készül, amely a PlanetLab gépeihez csatlakozni próbál és a problémamentes gépeket nyilvántartja, hogy ne kelljen feleslegesen csatlakozási kísérletet végezni a hibás gépekhez. Ez az eljárás nagyban felgyorsította a sikeres mérések begyűjtését.
+
+A csatlakozási és parancsfuttatási hibák a felmérés során kategorizálásra kerülnek és későbbi statisztikák számára tárolódnak. Így nyomon követhető a PlanetLab hálózatán elérhető gépek tényleges elérhetősége/használhatósága.
+A mérési rendszer honlapján ezek a friss statisztikák szintén elérhetően, így könnyen felmérhetjük a tömeges hibák okait. Ilyenre volt példa amikor a BME által üzemeltetett PlanetLab gépek leálltak és a PlanetLab megszüntette a hálózatukban elérhető gépekre való csatlakozási engedélyünket. Egy új hibakategória jelent meg a felmérési statisztikákban amely hirtelen sok gépet tett elérhetetlenné (bár nem mindet). A kapcsolódási hibák értelmezését Haja Dávid BSC hallgatóval együtt végeztük el, amely munka az ő szakdolgozatának is a részét képezi.
