@@ -1,0 +1,90 @@
+
+
+\begin{table}
+\begin{tabularx}{\textwidth}{
+| >{\hsize=.5\hsize}X
+| >{\hsize=1.2\hsize}X
+| >{\hsize=1.3\hsize}X |}
+
+\hline
+\vspace{0.03cm}
+{\large \textbf{Szereplő}}
+&
+\vspace{0.03cm}
+{\large \textbf{Cél}}
+& 
+\vspace{0.03cm}
+{\large \textbf{Mérések}} \\
+\hline
+
+
+Szolgáltató &
+\begin{itemize}
+ \setlength{\parskip}{0pt}
+  \setlength{\itemsep}{0pt plus 1pt}
+\item kapacitás tervezés
+\item működés ellenőrzés
+\item szolgáltatások értéknövelése
+\item használat alapú számlázás
+\end{itemize}
+&
+\begin{itemize}
+ \setlength{\parskip}{0pt}
+  \setlength{\itemsep}{0pt plus 1pt}
+\item sávszélesség kihasználtság
+\item másodpercenkénti csomagszám
+\item körülfordulási idő (RTT)
+\item RTT variancia
+\item csomagvesztés
+\item elérhetőség
+\item kapcsolási teljesítmény
+\item útvonalválasztás ellenőrzése
+\end{itemize}
+\\ \hline
+
+Felhasználó &
+\begin{itemize}
+ \setlength{\parskip}{0pt}
+  \setlength{\itemsep}{0pt plus 1pt}
+\item teljesítmény monitorozás
+\item csomag bővítés
+\item szerződéses szolgáltatás ellenőrzése
+\item tartalomfogyasztás optimalizálása
+\item használat felügyelete
+\end{itemize}
+&
+\begin{itemize}
+ \setlength{\parskip}{0pt}
+  \setlength{\itemsep}{0pt plus 1pt}
+\item elérhető sávszélesség
+\item válaszidő
+\item csomagvesztés
+\item elérhetőség
+\item csatlakozási ráta
+\item szolgáltatásminőség
+\end{itemize}
+
+\\ \hline
+
+Eszközgyártó &
+\begin{itemize}
+ \setlength{\parskip}{0pt}
+  \setlength{\itemsep}{0pt plus 1pt}
+\item Eszközök és konfigurációjuk optimalizálása
+%improve design/configuration of equipment
+\item Kitelepített eszközök valósidejű diagnózisa
+%implement real-time debugging/diagnosis of deployed hardware
+\end{itemize}
+&
+\begin{itemize}
+ \setlength{\parskip}{0pt}
+  \setlength{\itemsep}{0pt plus 1pt}
+\item átvitt csomagok megfigyelése
+\item naplófájlok vizsgálata
+\end{itemize}
+
+\\ \hline
+\end{tabularx}
+\label{tab:measurement-types}
+\end{table}
+
