@@ -11,7 +11,7 @@ Jelen fejezetben a legfontosabb Internet felderítését célzó szervezeteket �
 
 %\textbf{2-3 oldal kb}
 
-A CAIDA (Center for Applied Internet Data Analysis)\footnote{\url{http://www.caida.org/home/}} egy kollaborációs együttműködése állami, kutatói és kereskedelmi szervezeteknek aminek célja az Internet jobbá tétele. Alapvetően az alábbi három fő területre koncentrálja munkáját:
+A CAIDA (Center for Applied Internet Data Analysis)\footnote{\url{http://www.caida.org/home/}} egy kollaborációs együttműködése állami, kutatói és kereskedelmi szervezeteknek aminek célja az Internet üzemeltetésének, felügyeletének és fejlesztésének segítése. Alapvetően az alábbi három fő területre koncentrálódnak a szervezet munkakörei és projektjei:
 
 \begin{itemize}
 \item Kutatás és analizálás
@@ -22,21 +22,21 @@ A CAIDA (Center for Applied Internet Data Analysis)\footnote{\url{http://www.cai
 %Data and Tools.
 \end{itemize}
 
-Munkájuk során az Internet egyes aspektusainak megismeréséhez modelleket készítenek, majd vizsgálják azok érvényességét, végül publikálják a talált összefüggéseket. Céljuk előremozdítani az Internet növekedésének problémamentességét. Ennek érdekében folyamatosan feltérképezik az Internet szerkezetét, amelyet a korábbi fejezetekben is bemutattam. Évente új \glqq térképet \grqq készítenek az Autonóm Rendszerek hálózatáról, mind az IPv4, mind az IPv6-os hálózatrészekről külön-külön. Ezek a \ref{fig:caida-poster} ábrán láthatóak. 
+Munkájuk során az Internet egyes aspektusainak megismeréséhez modelleket készítenek, majd vizsgálják azok érvényességét, végül publikálják a talált összefüggéseket. Céljuk előremozdítani az Internet növekedésének problémamentességét. Ennek érdekében folyamatosan feltérképezik az Internet szerkezetét, amelyet a korábbi fejezetekben is bemutattam. Évente új \mbox{\glqq térképet \grqq} készítenek az Autonóm Rendszerek hálózatáról, mind az IPv4, mind az IPv6-os hálózatrészekről külön-külön. A \ref{fig:caida-poster} ábrán látható gráf pontjainak (AS) elhelyezése a földön is betöltött szélességi foka alapján (irány) és a rajta átmenő linkek száma alapján vannak elhelyezve (sugár, logaritmikusan ábrázolva).
 
 \begin{figure}[!ht]
 	\centering
 	\includegraphics[width=0.9\textwidth, keepaspectratio]{figures/caida-poster.png}
-	\caption{Az Internet AS gráfja}
+	\caption{Az Internet AS gráfja 2014-ben}
 	\label{fig:caida-poster}
 \end{figure}
 
-Az egyes megfigyelési és monitorozó tevékenységeken felül kibervédelmi megfigyeléseket is végeznek. Az Internet helyes működése elleni tevékenységek felderítése a céljuk és az utólagos megértésük.
+Az általános megfigyeléseken felül kutatásaik a kibervédelemre is kiterjednek. Céljuk az Internet helyes működése elleni tevékenységek felderítése és utólagos megértésük.
 
 
-Ezen széles skálájú megfigyelésekhez kiterjedt mérési rendszereket üzemeltetnek a világ minden táján. Begyűjtik az összes publikusan elérhető BGP útvonalhirdetéseket. A kooperáló szervezeteknél elhelyezkedő traceroute szerverekkel felméréseket végeznek a csomagtovábbítási viszonyokról az Internet egyes részeiben. Mindezeken felül pedig több Autonóm Rendszer hálózatában passzív méréseket is végeznek. Ennek a felhasználására egy példa az internetes háttérzaj mérése, ami az olyan adatcsomag küldések intenzitását mérik, amelyek olyan célcímekkel rendelkeznek ahol nem létezik fogadó számítógép. Az ilyen csomagok általában botnetek terjedési próbálkozásának a terméke.
+Ezen széles skálájú megfigyelésekhez kiterjedt mérési rendszereket üzemeltetnek a világ minden táján. Többek között begyűjtik az összes publikusan elérhető BGP útvonalhirdetéseket és a kooperáló szervezeteknél elhelyezkedő traceroute szerverekkel felméréseket végeznek a csomagtovábbítási viszonyokról az Internet egyes részeiben. Mindezeken felül pedig több Autonóm Rendszer hálózatában passzív méréseket is végeznek. Ennek a felhasználására egy példa az internetes háttérzaj mérése, ami az olyan adatcsomag küldések intenzitását mérik, amelyek olyan célcímekkel rendelkeznek ahol nem létezik fogadó számítógép. Az ilyen csomagok általában botnetek terjedési próbálkozásának a terméke.
 
-Az említett adatforrások egy központi gyűjtő és organizáló rendszerbe, az ARK\footnote{Archipelago}-ba vannak csatornázva. A feldolgozás során rendkívül nagy hangsúly van fektetve a kinyert adatok hivatalosításán. Minden származtatott adatban meg van jelölve annak forrásai, valamint a különböző forrásokból származó azonos információk gondosan össze vannak vetve.
+Az említett adatforrások egy központi gyűjtő és organizáló rendszerbe, az ARK\footnote{Archipelago}-ba vannak csatornázva. A feldolgozás során rendkívül nagy hangsúly van fektetve a kinyert adatok hivatalosításán. Minden származtatott adatban meg van jelölve annak forrásai, valamint a különböző forrásokból származó azonos információk gondosan össze vannak vetve, ellenőrizve megbízhatóságukat.
 
 %további tartalom majd innen: http://www.caida.org/home/about/progplan/progplan2014/
 %% fél oldal kb eddig
@@ -49,9 +49,11 @@ Az említett adatforrások egy központi gyűjtő és organizáló rendszerbe, a
 
 \subsection{PlanetLab}
 
-A PlanetLab konzorcium egyetemi, ipari és kormányzati intézmények együttműködő csoportja, amelyek együttműködése fejleszti és támogatja a PlanetLab számítógépes hálózatot. A résztvevő szervezetek megosztják saját erőforrásaikat és hozzáférnek a hálózatba kötött számítógépekhez. Ilyen módon a résztvevők kivételes lehetőséghez jutnak, hogy  nagyméretű hálózatokon és elosztott rendszereken tudjanak vizsgálatokat végezni.
+A PlanetLab konzorcium egyetemi, ipari és kormányzati intézmények együttműködő csoportja, amelyek erőforrásaikat megosztják kutatási céllal, így építik és fejlesztik a PlanetLab számítógépes hálózatát. A résztvevő szervezetek így hozzáférnek a sajátjuknál nagyobb hálózathoz. Ilyen módon a résztvevők kivételes lehetőséghez jutnak, hogy  nagyméretű hálózatokon és elosztott rendszereken tudjanak vizsgálatokat végezni.
 
 A konzorciumot 2002-ben alapította 10 amerikai egyetem az Intel Research közreműködésével, kezdetben 100 számítógép-csomópont létrehozásával. A közösségi teszthálózat évről évre bővült újabb egyetemek és ipari kapcsolatok csatlakozásával. A PlanetLab 2004-ben több Amerikán kívüli szervezetet is befogadott többek között európából, brazíliából és ázsiából. Ebben az évben így már világméretűvé nőtt és több mint 400 számítógép csomóponttal rendelkezett. Napjainkban ez a szám már túllépte az ezret és az \ref{fig:planetlab} ábrán látható, hogy a föld minden táján megtalálhatóak a hálózatban résztvevő csomópontok.
+
+A fejlesztett mérőrendszer is a PlanetLab hálózatát felhasználva végez méréseket az internet szerkezetére vonatkozóan.
 
 \begin{figure}[!ht]
 	\centering
@@ -74,7 +76,7 @@ Begyűjtött adataik fontos része ilyen módon az önkéntes mérésekből szá
 \subsection{SamKnows}
 %1 oldal
 
-Az Európai Unió és az amerikai FCC is felkarolta az egyetemi projektből kinövő SamKnows\footnote{\url{https://www.samknows.com/}} cég működését. Eredetileg a hétköznapi emberek könnyebb és objektív ISP választását segítette a projekt. Önkéntesek végeznek méréseket, hogy megállapítsák a szolgáltatójuk kapcsolatának minőségét. Nem csak sávszélesség mérésre alkalmas, de további hálózati paraméterek mellett a szolgáltatások diszkriminációját is figyeli. Olyan speciális adatcsomagokat használ a mérésekhez, amelyek HTTP, FTP, torrent, youtube, netflix, vagy VOIP\footnote{Voice Over IP - IP alapú hangkapcsolati protokoll} forgalomhoz tartoznak. Ezen funkciói miatt rendkívül hasznos ellenőrzési eszköze lett a felügyeleti hatóságoknak.
+Az Európai Unió és az amerikai FCC is felkarolta az egyetemi projektből kifejlődő SamKnows\footnote{\url{https://www.samknows.com/}} cég működését. Eredetileg a hétköznapi emberek könnyebb és objektív ISP választását segítette a projekt. Kezdetben önkéntesek végeztek méréseket a fejlesztett rendszerükön, hogy megállapítsák a szolgáltatójuk kapcsolatának minőségét. Nem csak sávszélesség mérésre alkalmas, de további hálózati paraméterek mellett a szolgáltatások diszkriminációját is figyeli. Olyan speciális adatcsomagokat használ a mérésekhez, amelyek HTTP, FTP, torrent, youtube, netflix, vagy VOIP\footnote{Voice Over IP - IP alapú hangkapcsolati protokoll} forgalomhoz tartoznak. Ezen funkciói miatt rendkívül hasznos ellenőrzési eszköze lett a felügyeleti hatóságoknak. Folyamatosan fejlesztik a rendszerüket és riportokat készítenek a szolgáltatókról és működésükről.
 %Az korábbi Internetsemlegességi vitáknál is felhasználták az így gyűjtött adatokat.
 Mérési rendszerük támogatja a weboldalon keresztüli méréseket, mobil applikáción keresztüli méréseket és különböző telepíthető hardverelemeket is felhasznál.
 
@@ -85,9 +87,9 @@ Mérési rendszerük támogatja a weboldalon keresztüli méréseket, mobil appl
 
 2010 és 2013 között több egyetem bevonásával egy Izraeli kutatócsoport indította el a DIMES (Distributed Internet Measurement and Simulation) kutatóprojektet. Céljuk az Internet struktúrájának és topológiájának a megismerése volt, amelyet önkéntes módon segítenek további résztevők.
 Az önkéntesek szerepe a geológiai diverzitás volt, amelynek segítségével több megfigyelési pontból lehet megvizsgálni az Internet szerkezetét.
-Az elvégzett mérések egyszerű Ping és Traceroute mérésekből álltak, amelyek minimális erőforrásigényt támasztottak az önkéntesek gépein. A résztvevők cserébe személyre szabott jelentéseket kaptak az Internet kapcsolatukról.
+Az elvégzett mérések egyszerű Ping és Traceroute mérésekből álltak, amelyek minimális erőforrásigényt támasztottak az önkéntesek gépein. A résztvevők cserébe személyre szabott jelentéseket kaptak az internetes kapcsolatuk minőségéről.
 
-Kutatási eredményeik felhívták a figyelmet az Autonóm Rendszerek rendkívül változatosságára és kapcsolataik nehezen felderíthetőségére. Egyik fontos megállapításuk a CAIDA akkori felméréseihez képest, hogy a Looking Glass szervereken keresztül elérhető BGP hirdetésekből hiányoznak az egyes AS-ek peering egyezményeikből fakadó összeköttetések.
+Kutatási eredményeik felhívták a figyelmet az Autonóm Rendszerek rendkívüli változatosságára és kapcsolataik nehezen felderíthetőségére. Egyik fontos megállapításuk a CAIDA akkori felméréseihez képest, hogy a Looking Glass szervereken keresztül elérhető BGP hirdetésekből hiányoznak az egyes AS-ek peering egyezményeikből fakadó összeköttetések.
 
 A kutatási projekt aktivitása 2013 óta teljesen megszűnt, a hivatalos honlapjuk nincs karbantartva.
 
@@ -120,7 +122,7 @@ Egyetemi projektként\footnote{\url{http://irl.cs.tamu.edu/projects/sampling/}} 
  
 
 
-Diploma munkaként született, majd kutatási projektté fejlődött az iPlane\footnote{\url{http://iplane.cs.washington.edu/}}, melynek fő célja az internetes útvonala QoS becslése és akár predikciója. Kimutatásaikat a PlanetLab gépeken és további publikus Traceroute szervereken futtatott útvonal felderítő mérések alapján végezték. Céljuk a felhalmozott adatok felhasználása későbbi szolgáltatások minőségének javítására.Elemzéseik fontos része, hogy a felderített útvonalak rész szakaszaira becsülnek paramétereket, így még nem mért útvonalak viselkedésére is tudnak becslést szolgáltatni. Ezt a becslést pedig Peer-to-peer és Voice-Over-IP alkalmazások működésének javítására használták.
+Diploma munkaként született, majd kutatási projektté fejlődött az iPlane\footnote{\url{http://iplane.cs.washington.edu/}}, melynek fő célja az internetes útvonalak QoS becslése és akár predikciója. Kimutatásaikat a PlanetLab gépeken és további publikus Traceroute szervereken futtatott útvonal felderítő mérések alapján végezték. Céljuk a felhalmozott adatok felhasználása későbbi szolgáltatások minőségének javítására.Elemzéseik fontos része, hogy a felderített útvonalaknak a rész szakaszaira becsülnek paramétereket, így még nem mért útvonalak viselkedésére is tudnak becslést szolgáltatni. Ezt a becslést pedig Peer-to-peer és Voice-Over-IP alkalmazások működésének javítására használták.
 
 %Alapvetően egy mellék képessége az internetes utak  emgfigyelése, mérése. A lényege az internetes útvonalak QoS becslése, jóslása a korábbi mérésekből, valamint ennek a felahsználása a felsőbb szolgáltatások javítására. Szintén PlanetLab os gépeket használ, valamint további publikus traceroute szervereket a mérések elvégzésére.
 %Rengeteg traceroute mérést végeznek, még napjainkban is, ezek elvileg elérhetőek bárki által. (Akár mi is hasznosíthatnánk?)

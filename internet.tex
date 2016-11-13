@@ -1,8 +1,8 @@
 \chapter{Az Internet szerkezete és mérése}
 %16 oldal
 
-A következő fejezetekben az Internet struktúráját és működésének egyes aspektusait mutatom be, amelyek mélyebb megértést biztosítanak a mérési rendszer működésének és fontosságának megismerésében.
-Az első szakaszban az internet makroszkopikus felépítését és működésének mechanizmusait mutatom be. Ezt követően az internetes útvonalak méréseire térek ki, amely során bemutatom a mérési rendszer által használt módszerek alapjait is. Végül korábbi és aktívan működő Internet mérési szervezetek munkáját és projektjeit mutatom be, amely segít felmérni a saját mérési rendszer funkcióinak lényegét és azok fontosságát.
+A következő fejezetekben az Internet struktúráját és működésének egyes aspektusait mutatom be, amelyek mélyebb megértést biztosítanak a fejlesztett mérési rendszer működésének és fontosságának megismerésében.
+Az első szakaszban az internet makroszkopikus felépítését és működésének fontosabb mechanizmusait mutatom be. Ezt követően az internetes útvonalak méréseire térek ki, amely során bemutatom a mérési rendszer által használt módszerek alapjait is. Végül korábbi és aktívan működő Internet mérési szervezetek munkáját és projektjeit mutatom be, amely segít felmérni a mérési rendszer funkcióinak lényegét és azok fontosságát.
 
 
 
@@ -15,15 +15,15 @@ Az első szakaszban az internet makroszkopikus felépítését és működésén
 %http://www.tmit.bme.hu/internet
 
 
-Társadalmunk fejlődésében meghatározó szerepe van egyéb technológiai trendek mellett a szoros információs összeköttetésnek, amelyet az Internet biztosít. Történelmi tények említése nélkül az alábbiakban bemutatom a fejlődésének és működésének meghatározó részeit.
+Társadalmunk fejlődésében meghatározó szerepe van, egyéb technológiai trendek mellett a szoros információs összeköttetésnek, amelyet az Internet biztosít. Történelmi tények említése nélkül az alábbiakban bemutatom a fejlődésének és működésének meghatározó részeit.
 
-Az Internet előtt nagyobb szervezetek, egyetemek egymástól elszigetelt számítógépes hálózattal rendelkeztek. Idővel ezen szervezetek együttműködése révén a hálózataik között átjárást biztosítottak, új routing eljárások bevezetésével. Később ezen kezdetleges Internethez több és több további saját hálózattal rendelkező csoportok, Autonóm Rendszerek\footnote{Autonomus System - AS} csatlakoztak. Amikor egyre több internetes szolgáltatás született meg a civil réteg számára is egyre értékesebbé és fontossá vált az Internetes elérés. Az 1990-es években robbanásszerűen terjedt el az Internetes elérés az ISP\footnote{Interset Service Provider - Internet szolgáltató}-k segítségével lassan minden házastársba.
+Az Internet előtt nagyobb szervezetek, egyetemek egymástól elszigetelt számítógépes hálózattal rendelkeztek. Idővel ezen szervezetek együttműködése révén a hálózataik között átjárást biztosítottak, új útvonalválasztó eljárások bevezetésével. Később ezen kezdetleges Internethez több és több saját hálózattal rendelkező csoportok, Autonóm Rendszerek\footnote{Autonomus System - AS}, csatlakoztak. Amikor már szolgáltatásként árulták erre szakosodott cégek és a gerinchálózatot is erre specializált végek bővítették,  a civil réteg számára is egyre értékesebbé és fontossá vált az Internetes elérés. Az 1990-es években robbanásszerűen terjedt el az Internetes elérés idővel majdnem minden házastársba, az ISP\footnote{Interset Service Provider - Internet szolgáltató}-k segítségével.
 
-Általánosan elmondható hogy a Internetes hálózatban minden résztvevő maga felel a hálózatán belüli csomagtovábbításért, és üzleti-technikai együttműködések által érik el egymáson keresztül a globális Internetet. Az üzleti megállapodások biztosítják a pénzügyi hátterét a strukturális fejlesztéseknek és a minőségi, nagy távolságokat áthidaló összeköttetések létrehozásához, azok üzemeltetéséhez.
+Az ilyen módon organikusan növekvő Internetes hálózatban  minden résztvevő maga felel a hálózatán belüli csomagtovábbításért, és üzleti-technikai együttműködések által érik el egymáson keresztül a globális Internetet. Az üzleti megállapodások biztosítják a pénzügyi hátterét a strukturális fejlesztéseknek és a minőségi, nagy távolságokat áthidaló összeköttetések létrehozásához és üzemeltetéséhez.
 
 A következő szakaszokban bemutatom ezen résztvevőit/alkotóit az Internetnek. Kitérek többek között az együttműködésük részleteire, valamint a rájuk ható, őket szabályozó szervezetekre.
 
-\subsection{Felügyelő szervezetek}
+\subsection{Erőforrások szétosztása}
 Az Internet egyik építőköve az IP\footnote{Internet Protokoll} adatcsomag, amelyben IP cím alapján van jelölve a forrás és a cél számítógép a hálózatban. Minden kommunikáció ezen alapszik, a csomagok továbbítása ez alapján történik. Ez a cím IPv4 esetén 32, IPv6 esetén 128 biten van ábrázolva. Az összes lehetséges cím kisebb címtartományokra van osztva. Ezen felosztást mutatja be a \ref{tab:cimtartomanyok} táblázat az IPv4 esetében.
 
 \begin{table}[ht]
@@ -72,10 +72,12 @@ Az egyes végfelhasználók ezen szervezeteken keresztül közvetlenül vagy kö
 
 \subsection{Autonóm rendszerek}
 
-Az egyes címtartományokkal rendelkező szervezetek, Autonóm Rendszereket alkotnak, amelyek saját hálózattal rendelkeznek. Ezen hálózatukon teljes hatalommal és felelősséggel rendelkeznek. A többi Autonóm Rendszerrel akkor lépnek kapcsolatba, amikor a címtartományukon kívüli cél felé kell elérést biztosítani vagy más Autonóm Rendszer szeretne elérést kapni egy az IP tartományába eső célgéphez.
+Az egyes címtartományokkal rendelkező szervezetek, Autonóm Rendszereket alkotnak, amelyek saját hálózattal rendelkeznek. Ezen hálózatukon teljes hatalommal és felelősséggel rendelkeznek. A többi Autonóm Rendszerrel akkor lépnek kapcsolatba, amikor a címtartományukon kívüli cél felé kell elérést biztosítani vagy más Autonóm Rendszer szeretne elérést kapni az IP tartományába eső célgéphez.
 Ezen forgatókönyvek esetén már nem a saját belső útvonal választási stratégiájukat használják, hanem az Autonóm Rendszerek között szabványosítottan működő protokollok alapján járnak el. Ez a BGP (Border Gateway Protocol) hálózati protokoll, amelyet minden Autonóm Rendszer külső csatlakozási pontján lévő útvonalválasztó használ. 
 
-Ezen speciális útvonalválasztók szigorú üzleti szerződések alapján működnek, mivel az átmenő forgalom komoly pénzügyi következményekkel jár legtöbb esetben. Az együttműködések a következő kategóriákba sorolhatóak:
+Ezen speciális útvonalválasztók szigorú üzleti szerződések alapján működnek, mivel az átmenő forgalom komoly pénzügyi következményekkel jár legtöbb esetben.
+%Az interkontinentális csomagtovábbítás mutatja be talán a legjobban a összeköttetések létrehozásának és üzemeltetésének a költségvonzatát.
+Az Autonóm Rendszerek közötti együttműködések a következő kategóriákba sorolhatóak:
 
 \begin{itemize}
 \setlength{\parskip}{0pt}
@@ -92,12 +94,15 @@ Az AS-ek Interneten betöltött fő funkciója alapján pedig különböző Tier
 \setlength{\parskip}{0pt}
 \setlength{\itemsep}{0pt plus 1pt}
   
-\item \textbf{Tier\-1:} Core, azaz központi AS\-eknek is nevezik, melyek az Internet gerincét alkotják, interkontinentális összeköttetéseikkel. Egymás között nagyjából Full Mesh-t alkotva.
+\item \textbf{Tier\-1:} Core, azaz központi AS\-eknek is nevezik, melyek az Internet gerincét alkotják, interkontinentális összeköttetéseikkel. Egymás között megközelítőleg teljes hálót alkotva.
 
 \item \textbf{Tier\-2:} Edge, azaz \glqq határmenti\grqq AS-eknek is nevezik, amelyek regionálisan továbbítják az Internetes elérést. Sokszor Peering kapcsolatot kialakítva egymással.
 
 \item \textbf{Tier\-3:} Access, azaz hozzáférési AS-eknek is nevezik, amelyek a végfelhasználóknak juttatják el az Internetes összeköttetést. Tipikusan ISP-k alkotják.
 \end{itemize}
+
+%Mennyire nehéz eldönteni melyik csoportba tartoznak pl.A határmenti AS-ek meghatározása pl homályos kicsit.
+
 
 
 %content/eyeball/tranzit AS
