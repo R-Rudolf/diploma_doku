@@ -47,6 +47,14 @@ A korábban részletesen bemutatott AS gráf ezen kollekció adataiból lett fel
 \end{itemize}
 
 
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.9\textwidth, keepaspectratio]{figures/ip_map.png}
+	\caption{A mérésben résztvevő ip címek geolokációs pozíciójai}
+	\label{fig:ip-map}
+\end{figure}
+
 \section{Gráf ábrázolása}
 
 Az gráf tulajdonságainak intuitív leolvasásához ábrázolások készültek. Mivel már egy mérés során több mint 1700 csomópontból álló gráfot kell ábrázolni, ezért ennek kivitelesése nehézségekbe ütközik. A \ref{fig:graph} ábrán látható egy ilyen gráf leképezés.
@@ -57,4 +65,17 @@ Az gráf tulajdonságainak intuitív leolvasásához ábrázolások készültek.
 	\caption{Egy napi mérés gráfja csak az egyik IP címhez menő útvonalakból\label{fig:graph}}
 \end{figure}
 
-Az ezen a képen jól láthatóak a középponttól távolodó hosszú fürtök, melyek egy cél IP cím AS-éhez vezető többnyire független útvonalakat reprezentálja. 
+Az ezen a képen jól láthatóak a középponttól távolodó hosszú fürtök, melyek egy cél IP cím AS-éhez vezető többnyire független útvonalakat reprezentálja.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.95\textwidth, keepaspectratio]{figures/as-graph.png}
+	\caption{A PlanetLab gépeitől az egyetem felé küldött csomagok által bejárt AS gráf}
+	\label{fig:as-graph}
+\end{figure}
+
+Az AS szám információ felhasználásával a \ref{fig:as-graph} ábrán látható gráf lett elkészítve. Az ábra adatforrása pár nap folyamatos traceroute mérések eredménye. A PlanetLab csatlakozott gépeiről a BME egyik gépe felé címzett útvonalak lettek aggregálva. A nyilak vastagsága az alapján növekszik, hány különböző ip cím pár köti össze a két AS csomópontot. Ha minden átmenő csomag azonos ip címeken halad keresztül akkor az vékony lesz, míg ha két AS között haladó csomagok több különböző ip cím párokon keresztül utaznak az vastagabban van ábrázolva.
+
+A \ref{fig:as-graph} ábráról leolvasható hogy mely AS-ek kiterjedtek geolokációs tekintetben. Ha ugyanis több különböző ip útvonal köt össze két AS-t akkor azok valószínűleg területileg is több ponton vannak összeköttetésben.
+
+A \ref{fig:as-graph} ábrán az összes útvonal a BME AS2547-es csomópontjába irányul, amely a valóságban kizárólag a AS1955-ös HBONE-AS HUNGARNET-tel van összeköttetésben. Egyes hibás traceroute mérések azonban torzítják ezt. A legnagyobb fokszámú csomópont az AS20965 , amely az AS1955 legfontosabb szomszédja, az elvi 17-ből\footnote{Forrás: Európai Regionális Internetes Nyilvántartó Hivatal honlapja: \href{https://stat.ripe.net/widget/asn-neighbours\#w.resource=1955}{stat.ripe.net}}.

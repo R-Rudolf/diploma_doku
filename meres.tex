@@ -30,3 +30,7 @@ Az iperf mérések implementálásához új eljárás kidolgozására volt szük
 Ezeket a lépéseket általánosítva olyan mérési forgatókönyvek létrehozását támogatja már a mérési rendszer, amely bármilyen távoli parancsok időzített futtatását garantálja. Ennek kialakítása a lehető legrugalmasabbra lett tervezve, amelynek működését a függelékben található példakód mutatja be. A kód egyszerűségének ellenére a mérés teljesen menedzselt, bármilyen hiba keletkezése le van kezelve és megfelelően naplózva és a mérési eredményben jelezve van. Garantálva van a helyes időzítés, a párhuzamos futás és a helyes leállás.
 
 %A mérési forgatókönyvek rendkívül hasznosak, segítségükkel új mérések implementálása kényelmes és gyors.
+
+
+\section{Geolokációs és AS információk}
+Az internetes útvonalakat alkotó IP címekről több információt is tud kinyerni a mérési rendszer. Ilyen az ip címhez tartozó autonóm rendszer azonosítója, valamint a becsült geolokációs elhelyezkedése. Ezekhez Python szkriptek lettek készítve, amelyek ingyenes online szolgáltatásokat vesznek igénybe. A nagy feldolgozandó adatmennyiség és a sokszor lassú kapcsolódás miatt helyi gyorsítótár alkalmazása volt szükséges.
