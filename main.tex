@@ -34,6 +34,12 @@
 \definecolor{red}{RGB}{160,0,0}
 \definecolor{comments}{RGB}{0,150,0}
  
+\lstset{
+    frame=single,
+    breaklines=true,
+    postbreak=\raisebox{0ex}[0ex][0ex]{\ensuremath{\color{red}\hookrightarrow\space}}
+}
+
 \lstset{language=Python, 
         basicstyle=\ttfamily\small, 
         keywordstyle=\color{keywords},

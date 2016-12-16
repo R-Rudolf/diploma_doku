@@ -76,11 +76,22 @@ Begyűjtött adataik fontos része ilyen módon az önkéntes mérésekből szá
 \subsection{SamKnows}
 %1 oldal
 
-Az Európai Unió és az amerikai FCC is felkarolta az egyetemi projektből kifejlődő SamKnows\footnote{\url{https://www.samknows.com/}} cég működését. Eredetileg a hétköznapi emberek könnyebb és objektív ISP választását segítette a projekt. Kezdetben önkéntesek végeztek méréseket a fejlesztett rendszerükön, hogy megállapítsák a szolgáltatójuk kapcsolatának minőségét. Nem csak sávszélesség mérésre alkalmas, de további hálózati paraméterek mellett a szolgáltatások diszkriminációját is figyeli. Olyan speciális adatcsomagokat használ a mérésekhez, amelyek HTTP, FTP, torrent, youtube, netflix, vagy VOIP\footnote{Voice Over IP - IP alapú hangkapcsolati protokoll} forgalomhoz tartoznak. Ezen funkciói miatt rendkívül hasznos ellenőrzési eszköze lett a felügyeleti hatóságoknak. Folyamatosan fejlesztik a rendszerüket és riportokat készítenek a szolgáltatókról és működésükről.
+Az Európai Unió és az amerikai FCC is felkarolta az egyetemi projektből kifejlődő SamKnows\footnote{\url{https://www.samknows.com/}} cég működését. Eredetileg a hétköznapi emberek könnyebb és objektív ISP választását segítette a projekt. Kezdetben önkéntesek végeztek méréseket a fejlesztett rendszerükön, hogy megállapítsák a szolgáltatójuk kapcsolatának minőségét. Nem csak sávszélesség mérésre alkalmas, de további hálózati paraméterek mellett a szolgáltatások diszkriminációját is figyeli. Olyan speciális adatcsomagokat használ a mérésekhez, amelyek HTTP, FTP, torrent, youtube, netflix, vagy VOIP\footnote{Voice Over IP - IP alapú hangkapcsolati protokoll} forgalmat szimulálnak. Ezen funkciói miatt rendkívül hasznos ellenőrzési eszköze lett a felügyeleti hatóságoknak. Folyamatosan fejlesztik a rendszerüket és riportokat készítenek a szolgáltatókról és működésükről.
 %Az korábbi Internetsemlegességi vitáknál is felhasználták az így gyűjtött adatokat.
-Mérési rendszerük támogatja a weboldalon keresztüli méréseket, mobil applikáción keresztüli méréseket és különböző telepíthető hardverelemeket is felhasznál.
+Mérési rendszerük támogatja a weboldalon keresztüli méréseket, mobil applikáción keresztüli méréseket és különböző telepíthető hardverelemeket is felhasznál, mint például a SamKnows Whitebox.
 
-%Britt egyetemi kezdeményezés volt ami azt tűzte ki céljául, hogy a hétköznapi emberek jobban tudjanak ISP-t választani. Az EU és az amerikai FCC is felkarolta és állami megrendelédekre felméréseket végez a népesség elérhető internetes sávszélességéről. Főleg az a fókuszuk, hogy az ISP-k milyen végfelhasználói sávszélességet és kapcsolati minőséget adnak. Speciális képessége, hogy felméri a különböző felhasználások diszkriminációját. Azaz mérik a torrent, VOIP, és hasonlók(email, ftp, web, youtube, netflix) kiszolgálását.
+\begin{figure}[!ht]
+	\centering
+	\includegraphics[width=0.45\textwidth, keepaspectratio]{figures/samknows-whitebox.png}
+	\hspace{20pt}
+	\includegraphics[width=0.45\textwidth, keepaspectratio]{figures/samknows-whitebox2.png}
+		
+	\caption{A SamKnows Whitebox méréseinek vázlata és elhelyezkedése a háztartásokban}
+	\label{fig:samknows}
+\end{figure}
+
+A Whitebox készülékek működési elvét a \ref{fig:samknows} ábrák mutatják be, amely a korábban említett méréseket végzi el egy a háztartás hálózatába kötött eszköz segítségével. Az Európia Unió 2012-ben kérte fel a SamKnows céget a tagállamok interneteléréseinek a vizsgálatára. A tanulmány\footnote{\href{https://ec.europa.eu/digital-single-market/news/quality-broadband-services-eu-samknows-study-internet-speeds}{Quality of Broadband Services in the EU}} során 9467 háztartásba helyezték el a Whitebox készülékeket. A mérési adatok publikusan elérhetőek a \url{data.europa.eu} honlapról
+
 
 \subsection{A DIMES mérési rendszer}
 %1.5-2 oldal
