@@ -6,9 +6,24 @@
 \subsection{MongoDB adatbázis használata}
 Először SQLite adatbázis volt használva a mérési eredmények tárolására. Az SQL lekérdezési nyelvet széleskörű ismerete miatt lett használva, valamint a Python programozási környezetből való kényelmes használta miatt. Az adatbázis egyszerű fájlként van tárolva, így könnyebben kezelhető. A fejlesztés közben sűrűn változó struktúrájú adatok tárolásár azonban nem volt megfelelő. Egy új mérési attribútum bevezetésekor új adattáblát kellett létrehozni, a régi adatokat pedig megfelelően importálni. A felmerülő adatkonverziók feleslegesen vettek el időt. Ezen felül az adatok feldolgozása is erőforrás igényes volt, mivel a komplexebb adatfeldolgozási lépések Python szkripteken futottak amelyek többször fordultak újra az SQLite adatbázishoz.
 
-Ezen problémák miatt más adatbázis megoldások lettek felmérve, amelyek jobban illeszkedhetnek majd a rendszerek igényeihez. A relációs adatbázisokkal szembe a dokumentum alapú adatbázisok nem rendelkeznek szigorú adatstruktúrákkal. Egy kollekcióban (az adattáblákhoz hasonló elem) többféle felépítésű adatelem is elhelyezkedhet. Egy hibás mérés adateleme például csak kevéssel különbözik a többitől. Ezek könnyen kezelhetően együtt tudnak élni egy ilyen dokumentum alapú adatbázisban, míg komplex relációs táblák kialakítása lett volna szükséges SQL esetében. Végül a MongoDB lett kiválasztva, a széleskörű adatfeldolgozási támogatása miatt. Egyes komplexebb feldolgozási lépéseket akár azonnal az adatbázisban el lehet végezni, a többfokozatú adataggregálási rendszerének és a JavaScript alapú map-reduce eljárásnak hála.
+Ezen problémák miatt más adatbázis megoldások lettek felmérve, amelyek jobban illeszkedhetnek majd a rendszerek igényeihez. A relációs adatbázisokkal szemben a dokumentum alapú adatbázisok nem rendelkeznek szigorú adatstruktúrákkal. Egy kollekcióban (az adattáblákhoz hasonló elem) többféle felépítésű adatelem is elhelyezkedhet. Egy hibás mérés adateleme például csak kevéssel különbözik a többitől. Ezek könnyen kezelhetően együtt tudnak élni egy ilyen dokumentum alapú adatbázisban, míg komplex relációs táblák kialakítása lett volna szükséges SQL esetében.
 
-A választás meghozta eredményét, mivel felgyorsul az új adatfeldolgozások fejlesztése, valamint a régebbi struktúrájú mérések az újakkal könnyen együtt kezelhetővé váltak.
+Végül a MongoDB lett kiválasztva, a széleskörű adatfeldolgozási támogatása miatt. Egyes komplexebb feldolgozási lépéseket akár azonnal az adatbázisban el lehet végezni, a többfokozatú adataggregálási rendszerének és a JavaScript alapú map-reduce eljárásnak hála. Az adatfeldolgozó képességeinek bemutatására az alábbi kódrészletet mutatom be, amely egy későbbiekben bemutatandó adat kollekcióból kigyűjti a mérések által felderített Internetes kapcsolatok tulajdonságait:
+
+\begin{lstlisting}[language=JavaScript]
+db.getCollection('links').aggregate([
+    {$project:{_id:0, links:1}},
+    {$unwind:"$links"},
+    {$project:{
+        delay: "$links.delay",
+        jitter: "$links.jitter",
+        rtt: "$links.rtt"
+    }},
+    {$out:"to_export"}
+])
+\end{lstlisting}
+
+A választás meghozta eredményét, mivel felgyorsult az új adatfeldolgozások fejlesztése, valamint a régebbi struktúrájú mérések az újakkal könnyen együtt kezelhetővé váltak.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Címszavakban a tartalom:
