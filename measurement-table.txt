@@ -19,6 +19,8 @@
 
 
 Szolgáltató &
+
+\begin{flushleft}
 \begin{itemize}
  \setlength{\parskip}{0pt}
   \setlength{\itemsep}{0pt plus 1pt}
@@ -27,7 +29,10 @@ Szolgáltató &
 \item szolgáltatások értéknövelése
 \item használat alapú számlázás
 \end{itemize}
+\end{flushleft}
 &
+
+\begin{flushleft}
 \begin{itemize}
  \setlength{\parskip}{0pt}
   \setlength{\itemsep}{0pt plus 1pt}
@@ -40,9 +45,12 @@ Szolgáltató &
 \item kapcsolási teljesítmény
 \item útvonalválasztás ellenőrzése
 \end{itemize}
+\end{flushleft}
 \\ \hline
 
 Felhasználó &
+
+\begin{flushleft}
 \begin{itemize}
  \setlength{\parskip}{0pt}
   \setlength{\itemsep}{0pt plus 1pt}
@@ -52,7 +60,10 @@ Felhasználó &
 \item tartalomfogyasztás optimalizálása
 \item használat felügyelete
 \end{itemize}
+\end{flushleft}
 &
+
+\begin{flushleft}
 \begin{itemize}
  \setlength{\parskip}{0pt}
   \setlength{\itemsep}{0pt plus 1pt}
@@ -63,25 +74,33 @@ Felhasználó &
 \item csatlakozási ráta
 \item szolgáltatásminőség
 \end{itemize}
+\end{flushleft}
 
 \\ \hline
 
 Eszközgyártó &
+
+\begin{flushleft}
 \begin{itemize}
  \setlength{\parskip}{0pt}
   \setlength{\itemsep}{0pt plus 1pt}
-\item Eszközök és konfigurációjuk optimalizálása
+\item eszközök és konfigurációjuk optimalizálása
 %improve design/configuration of equipment
-\item Kitelepített eszközök valósidejű diagnózisa
+\item kitelepített eszközök valósidejű diagnózisa
 %implement real-time debugging/diagnosis of deployed hardware
 \end{itemize}
+\end{flushleft}
 &
+
+\begin{flushleft}
 \begin{itemize}
  \setlength{\parskip}{0pt}
   \setlength{\itemsep}{0pt plus 1pt}
 \item átvitt csomagok megfigyelése
 \item naplófájlok vizsgálata
 \end{itemize}
+\end{flushleft}
+
 
 \\ \hline
 \end{tabularx}

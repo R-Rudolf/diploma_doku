@@ -18,7 +18,7 @@ Az egyes mérési eljárásokat a hálózat működésére való hatása alapjá
 
 Az aktív mérési eljárások alkalmazása visszahat a hálózatra, mivel új forgalmat hoz létre azon. Ez nem kívánt lehet, egyes esetekben azonban elkerülhetetlen, ha a végfelhasználó által észlelt hálózati viszonyokról szeretnénk megbizonyosodni.
 %Ezen ellentétet leginkább a sávszélesség mérése mutatja be a legjobban. Az hálózat üzemeltetőjének egyik fontos szempontja megbizonyosodni hálózatának áteresztőképességéről, ahogy ez a \ref{tab:measurement-types} táblázatban is szerepel. Ennek érdekében azonban nem indít új 
-Az aktív mérések két működési elv alapján működhetnek, vagy az csak adatfolyam forrása, vagy a nyelője is részt vesz a mérésben. Ez utóbbi esetben, a hálózatba küldött csomagok TTL\footnote{Time To Live - Élettartam} mezőjét használják fel, hogy az a cél cím elérése előtt az nullára csökkenjen, így \textit{Time To Live exceeded in transit} üzenet visszaküldésére kényszeríti a közbülső gépet, ahol nullázódott a TTL mező. Ezt az elvet használja a Traceroute mérőszoftver, amely egy célcím felé vezető internetes útvonalat deríti fel ilyen üzenetekkel. Ennek a folyamatnak a sematikus működése látható a \ref{fig:traceroute-works} árbán. Működéséhez szükséges az útvonalon lévő összes közbülső számítógépen engedélyezni a \textit{Time To Live exceeded in transit} küldését. Ennek hiányában nem működik a traceroute.
+Az aktív mérések két működési elv alapján működhetnek, vagy csak az adatfolyam forrása, vagy a nyelője is részt vesz a mérésben. Ez utóbbi esetben, a hálózatba küldött csomagok TTL\footnote{Time To Live - Élettartam} mezőjét használják fel, hogy az a cél cím elérése előtt az nullára csökkenjen, így \textit{Time To Live exceeded in transit} üzenet visszaküldésére kényszeríti a közbülső gépet, ahol nullázódott a TTL mező. Ezt az elvet használja a Traceroute mérőszoftver, amely egy cél cím felé vezető internetes útvonalat deríti fel ilyen üzenetekkel. Ennek a folyamatnak a sematikus működése látható a \ref{fig:traceroute-works} ábrán. Működéséhez szükséges az útvonalon lévő összes közbülső számítógépen engedélyezni a \textit{Time To Live exceeded in transit} küldését. Ennek hiányában nem működik a traceroute.
 %ICMP TTL ping, iperf
 
 \begin{figure}[h]
@@ -30,19 +30,22 @@ Az aktív mérések két működési elv alapján működhetnek, vagy az csak ad
 
 \footnotetext{Forrás: \url{https://telconotes.wordpress.com/2013/02/08/how-traceroute-works/}}
 
-Egy másik sokat használt mérőszoftver a ping, amely a közbülső gépekkel szemben nem tart fent elvárást, csak a célgéppel szemben. Egy válaszkérő üzenetet küld, amelyre ha válasz érkezik akkor elérhetőnek számít a célcím és a csomag körüljárási idejét is meg lehet állapítani.
+Egy másik sokat használt mérőszoftver a ping, amely csak a célgéppel szemben tart fent elvárást, a közbülső gépekkel nem. Egy válaszkérő üzenetet küld, amelyre ha válasz érkezik akkor elérhetőnek számít a cél cím és a csomag körüljárási idejét is meg lehet állapítani.
 
-Az eddig említett mérési elvek a hálózati eszközök szabványokban meghatározott működése alapján végeznek méréseket. A mérőrendszerben is alkalmazott iperf mérőszoftver viszont a célcímen telepített és futó példány segítségével képes csak a méréseket végrehajtani. Emiatt az üzemeltetése bonyolultabb, azonban információkban gazdag méréseket lehet végezni vele. Legfontosabb felhasználási funkciója a sávszélesség mérés.
+Az eddig említett mérési elvek a hálózati eszközök szabványokban meghatározott működése alapján végeznek méréseket. A mérőrendszerben is alkalmazott iperf mérőszoftver viszont a cél címen telepített és futó példány segítségével képes csak a méréseket végrehajtani. Emiatt az üzemeltetése bonyolultabb, azonban információkban gazdag méréseket lehet végezni vele. Legfontosabb felhasználási funkciója a sávszélesség mérés.
 
 \subsection{Passzív mérések}
 
-Egyes esetekben kívánatosak a vizsgálandó hálózatot nem terhelő vagy befolyásoló mérések. Ilyen esetekben passzív mérési eljárásokat alkalmaznak, melyek az áthaladó adatcsomagokat vizsgálata alapján adnak visszajelzést a hálózat működéséről. Ilyen fajta méréseket főleg a hálózat üzemeltetői végeznek, mivel számukra egyszerű azokat végrehajtani a hálózati eszközök beállításával vagy az összekötő linkekre csatlakoztatott mérőeszközökkel. Egyik legelterjedtebb passzív hálózatmérési eljárás a Netflow, amelyet a Cisco fejlesztett ki, majd az IETF\footnote{Internet engineering task Force} is szabványosított. Működési alapelve, hogy a hálózati eszközökön az átmenő forgalmat egyes tulajdonságai alapján\footnote{Küldő/fogadó IP cím, küldő/fogadó port, használt protokoll, szolgáltatási osztály} folyamokba(flow) klasszifikálja, majd a generált forgalmuk historikus feljegyzésre kerül további elemzésre. 
+Egyes esetekben szükségesek a vizsgálandó hálózatot nem terhelő vagy befolyásoló mérések. Ilyen esetekben passzív mérési eljárásokat alkalmaznak, melyek az áthaladó adatcsomagok vizsgálata alapján adnak visszajelzést a hálózat működéséről. Ilyen fajta méréseket főleg a hálózat üzemeltetői végeznek, mivel számukra egyszerű azokat végrehajtani a hálózati eszközök beállításával vagy az összekötő linkekre csatlakoztatott mérőeszközökkel. Egyik legelterjedtebb passzív hálózatmérési eljárás a Netflow, amelyet a Cisco fejlesztett ki, majd az IETF\footnote{Internet engineering task Force} is szabványosított. Működési alapelve, hogy a hálózati eszközökön az átmenő forgalmat egyes tulajdonságai alapján\footnote{Küldő/fogadó IP cím, küldő/fogadó port, használt protokoll, szolgáltatási osztály} folyamokba(flow) klasszifikálja, majd a generált forgalmuk historikus feljegyzésre kerül további elemzésre. 
 %source/destination IP address, source/destination ports, protocol interface and class of service
 % Netflow leírás: http://www.cisco.com/c/en/us/products/collateral/ios-nx-os-software/ios-netflow/prod_white_paper0900aecd80406232.html
 
 \subsection{Hibrid mérések}
 
 A korábban említett eljárások tulajdonságait ötvözik a hibrid hálózatmérési eljárások, melyek során mérési forgalmat generálnak a hálózatban, majd ezt passzív módon is megfigyelik. Ilyen módon egyszerre lehet információt kapni az egyes csomagok továbbítása során tapasztalt kezeléséről/életútjáról és a kapcsolat egészére vonatkozó tulajdonságokról. Ezzel a módszerrel lehet a legjobban megfigyelni a köztes elemek hatását a kapcsolat egészére.
+
+
+\pagebreak
 
 \subsection{További adatforrások}
 

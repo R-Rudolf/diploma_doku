@@ -2,7 +2,7 @@
 %16 oldal
 
 A következő fejezetekben az Internet struktúráját és működésének egyes aspektusait mutatom be, amelyek mélyebb megértést biztosítanak a fejlesztett mérési rendszer működésének és fontosságának megismerésében.
-Az első szakaszban az internet makroszkopikus felépítését és működésének fontosabb mechanizmusait mutatom be. Ezt követően az internetes útvonalak méréseire térek ki, amely során bemutatom a mérési rendszer által használt módszerek alapjait is. Végül korábbi és aktívan működő Internet mérési szervezetek munkáját és projektjeit mutatom be, amely segít felmérni a mérési rendszer funkcióinak lényegét és azok fontosságát.
+Az első szakaszban az internet makroszkopikus felépítését és működésének fontosabb mechanizmusait mutatom be. Ezt követően az internetes útvonalak méréseire térek ki, amely során bemutatom a mérési rendszer által használt módszerek alapjait is. Végül korábbi illetve aktívan működő Internet mérési szervezetek munkáját és projektjeit mutatom be, amely segít felmérni a mérési rendszer funkcióinak lényegét és azok fontosságát.
 
 
 
@@ -17,14 +17,14 @@ Az első szakaszban az internet makroszkopikus felépítését és működésén
 
 Társadalmunk fejlődésében meghatározó szerepe van, egyéb technológiai trendek mellett a szoros információs összeköttetésnek, amelyet az Internet biztosít. Történelmi tények említése nélkül az alábbiakban bemutatom a fejlődésének és működésének meghatározó részeit.
 
-Az Internet előtt nagyobb szervezetek, egyetemek egymástól elszigetelt számítógépes hálózattal rendelkeztek. Idővel ezen szervezetek együttműködése révén a hálózataik között átjárást biztosítottak, új útvonalválasztó eljárások bevezetésével. Később ezen kezdetleges Internethez több és több saját hálózattal rendelkező csoportok, Autonóm Rendszerek\footnote{Autonomus System - AS}, csatlakoztak. Amikor már szolgáltatásként árulták erre szakosodott cégek és a gerinchálózatot is erre specializált végek bővítették,  a civil réteg számára is egyre értékesebbé és fontossá vált az Internetes elérés. Az 1990-es években robbanásszerűen terjedt el az Internetes elérés idővel majdnem minden házastársba, az ISP\footnote{Interset Service Provider - Internet szolgáltató}-k segítségével.
+Az Internet előtt nagyobb szervezetek, egyetemek egymástól elszigetelt számítógépes há\-ló\-zat\-tal rendelkeztek. Idővel ezen szervezetek együttműködése révén a hálózataik között átjárást biztosítottak, új útvonalválasztó eljárások bevezetésével. Később ezen kezdetleges Internethez több és több saját hálózattal rendelkező csoportok, Autonóm Rendszerek\footnote{Autonomus System - AS}, csatlakoztak. Amikor már szolgáltatásként árulták erre szakosodott cégek és a gerinchálózatot is erre specializált végek bővítették,  a civil réteg számára is egyre értékesebbé és fontossá vált az Internetes elérés. Az 1990-es években robbanásszerűen terjedt el az Internetes elérés idővel majdnem minden háztartásba, az ISP\footnote{Interset Service Provider - Internet szolgáltató}-k segítségével.
 
 Az ilyen módon organikusan növekvő Internetes hálózatban  minden résztvevő maga felel a hálózatán belüli csomagtovábbításért, és üzleti-technikai együttműködések által érik el egymáson keresztül a globális Internetet. Az üzleti megállapodások biztosítják a pénzügyi hátterét a strukturális fejlesztéseknek és a minőségi, nagy távolságokat áthidaló összeköttetések létrehozásához és üzemeltetéséhez.
 
 A következő szakaszokban bemutatom ezen résztvevőit/alkotóit az Internetnek. Kitérek többek között az együttműködésük részleteire, valamint a rájuk ható, őket szabályozó szervezetekre.
 
 \subsection{Erőforrások szétosztása\label{eroforrasok}}
-Az Internet egyik építőköve az IP\footnote{Internet Protokoll} adatcsomag, amelyben IP cím alapján van jelölve a forrás és a cél számítógép a hálózatban. Minden kommunikáció ezen alapszik, a csomagok továbbítása ez alapján történik. Ez a cím IPv4 esetén 32, IPv6 esetén 128 biten van ábrázolva. Az összes lehetséges cím kisebb címtartományokra van osztva. Ezen felosztást mutatja be a \ref{tab:cimtartomanyok} táblázat az IPv4 esetében.
+Az Internet egyik építőköve az IP\footnote{Internet Protokoll} adatcsomag, amelyben IP cím alapján van jelölve a forrás és a cél számítógép a hálózatban. Minden kommunikáció ezen alapszik és a csomagok továbbítása ez alapján történik. Ez a cím IPv4 esetén 32, IPv6 esetén 128 biten van ábrázolva. Az összes lehetséges cím kisebb címtartományokra van osztva. Ezen felosztást mutatja be a \ref{tab:cimtartomanyok} táblázat az IPv4 esetében.
 
 \begin{table}[ht]
 	\centering
@@ -88,7 +88,7 @@ Az Autonóm Rendszerek közötti együttműködések a következő kategóriákb
 \item \textbf{Peering} Általában hasonló nagyságú AS-ek kötnek ilyen kapcsolatot egymással, hogy kölcsönösen kicseréljék a forgalmukat, akár térítés nélkül.
 \end{itemize}
 
-Az AS-ek Interneten betöltött fő funkciója alapján pedig különböző Tier (szint)\-ekbe tartozhatnak: 
+Az AS-ek Interneten betöltött fő funkciója alapján pedig különböző Tier szin\-tek\-be tartozhatnak: 
 
 \begin{itemize}
 \setlength{\parskip}{0pt}
@@ -96,7 +96,7 @@ Az AS-ek Interneten betöltött fő funkciója alapján pedig különböző Tier
   
 \item \textbf{Tier\-1:} Core, azaz központi AS\-eknek is nevezik, melyek az Internet gerincét alkotják, interkontinentális összeköttetéseikkel. Egymás között megközelítőleg teljes hálót alkotva.
 
-\item \textbf{Tier\-2:} Edge, azaz \glqq határmenti\grqq AS-eknek is nevezik, amelyek regionálisan továbbítják az Internetes elérést. Sokszor Peering kapcsolatot kialakítva egymással.
+\item \textbf{Tier\-2:} Edge, azaz \glqq határmenti\grqq  AS-eknek is nevezik, amelyek regionálisan továbbítják az Internetes elérést. Sokszor Peering kapcsolatot kialakítva egymással.
 
 \item \textbf{Tier\-3:} Access, azaz hozzáférési AS-eknek is nevezik, amelyek a végfelhasználóknak juttatják el az Internetes összeköttetést. Tipikusan ISP-k alkotják.
 \end{itemize}

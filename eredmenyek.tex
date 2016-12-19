@@ -137,54 +137,107 @@ A korábban részletesen bemutatott AS gráf ezen kollekció adataiból lett fel
 \item \textbf{gateways\_to\_as:} Az autonóm rendszerből másikba vezető kapcsolatok listája. A másik AS-hez irányuló ip cím párok (egyik AS kimeneti címe, másik AS bemeneti címe) listáit is tartalmazza.
 \end{itemize}
 
+Ezen adatsor bemutatása nagy részben a következő szekcióban történik majd, mivel az elkészült gráfok adatforrása ez az adat kollekció. Az eredményezett gráf megjelenítéshez viszont nem kapcsolódó kimutatás látható a \ref{fig:as-route-len} ábrán, amely a feltérképezett Autonóm Rendszerek közötti útvonalak hossz eloszlását ábrázolja.
 
-
-\begin{figure}[h]
+\begin{figure}[h!]
 	\centering
-	\includegraphics[width=0.9\textwidth, keepaspectratio]{figures/ip_map.png}
-	\caption{A mérésben résztvevő ip címek geolokációs pozíciójai}
-	\label{fig:ip-map}
+	\includegraphics[width=0.9\textwidth, keepaspectratio]{figures/as-hop-hist.png}
+	\caption{Az AS gráf csomópontjai között lévő útvonalak hosszának eloszlása}
+	\label{fig:as-route-len}
 \end{figure}
 
-\section{Gráf ábrázolása}
+Az IP linkek és az AS linkek természetes hasonlósága okán a korábbi \ref{fig:link-len} ábrához hasonlít. Az útvonalak hosszának függetlensége miatt a centrális határeloszlás értelmében minél nagyobb a mérés mintavétele, annál jobban hasonlítanak az említett függvények a Normális eloszlásra. Az AS gráf az egy \glqq klaszterhez \grqq tartozó IP csomópontok egybeolvasztása révén jön létre. A kapott hálózat pedig legtöbb tulajdonságát így örökli az eredeti gráfból.
 
-Az gráf tulajdonságainak intuitív leolvasásához ábrázolások készültek. Mivel már egy mérés során több mint 1700 csomópontból álló gráfot kell ábrázolni, ezért ennek kivitelesése nehézségekbe ütközik. A \ref{fig:graph} ábrán látható egy ilyen gráf leképezés.
 
-\begin{figure}[!ht]
+\section{Gráfok ábrázolása}
+
+\begin{figure}[!h]
 	\centering
 	\includegraphics[width=1\textwidth, keepaspectratio]{figures/graph.png}
-	\caption{Egy napi mérés gráfja az egyetem felé vezető útvonalak IP csomópontjaiból\label{fig:graph}}
+	\caption{Egy napi mérés gráfja egy egyetemi cím felé vezető útvonalak IP csomópontjaiból\label{fig:graph}}
 \end{figure}
 
-A \ref{fig:graph} ábrán jól láthatóak a középponttól távolodó hosszú fürtök, melyek egy cél IP cím AS-éhez vezető többnyire független útvonalakat reprezentálja.
+A mérési eredményekből készült gráfok tulajdonságainak intuitív leolvasásához ábrázolások készültek. Mivel egy mérés során több mint 1700 csomópontból álló gráfot kell ábrázolni, ezért ennek kivitelesése kihívást jelent. A \ref{fig:graph} ábrán látható az első sikeres gráf ábrázolás, amelyen már kivehető a gráf szerkezete.
+Az ábrán jól láthatóak a középponttól távolodó hosszú fürtök, melyek egy cél IP címhez vezető többnyire független útvonalakat reprezentálja.
 
-\begin{figure}[h]
+\pagebreak
+
+
+\begin{figure}[!h]
 	\centering
-	\includegraphics[width=0.95\textwidth, keepaspectratio]{figures/degree.png}
-	\caption{A}
-	\label{fig:ip-degree}
+	\includegraphics[width=1\textwidth, keepaspectratio]{figures/as-graph2.png}
+	\caption{Az IP gráf továbbfejlesztett ábrázolása\label{fig:ip-graph}}
 \end{figure}
 
-\begin{figure}[h]
+Az ábrázolás további fejlesztését követően a \ref{fig:ip-graph} ábrán látható kép készült el. Ezen az egyes IP csomópontok sugárirányban a fokszámuk alapján vannak elhelyezve, minél nagyobb fokszámmal rendelkeznek, annál közelebb vannak az origóhoz. Ezen felül klaszterezést követően lettek csoportonként szétszórva a kör peremén. A színezés az egy AS-hez tartozó IP csomópontokat jelöli. A legtöbb esetben a klaszterezés vissza is adta a csomópontok Autonóm Rendszerekhez való rendelését. A kör közepén a korábban említett alacsonyabb Tier szinthez tartozó Autonóm Rendszerek csomópontjai tartoznak.
+
+\pagebreak
+
+A csomópontok koordinátáinak számításához használt funkció a következő volt, amely az R programozási nyelven lett írva:
+
+\begin{lstlisting}[language=R]
+my_layout <- function(net){
+  # Alap informaciok kinyerese a halozatbol
+  nodes = V(net)
+  deg = degree(net)
+  max_deg = max(deg)
+  clust = cluster_louvain(net)
+  memb = membership(clust)
+  
+  # klaszterek szogtartomanyokra osztasa
+  group_start = get_group_start_indexes(memb, nodes)
+  
+  for(n in nodes){
+    group = memb[n]
+    # origotol valo tavolsag szamitasa
+    radius = (max_deg - deg[n] + 1)/(max_deg + 1)
+    # klaszterek alapjan valo csoportositas
+    angle = step * ( group_start[group] + group_index[group] )
+    group_index[group]  = group_index[group] + 1
+    
+    coord[n, 1] = radius * cos(angle)
+    coord[n, 2] = radius * sin(angle)
+  }
+  
+  return(coord)
+}
+\end{lstlisting}
+
+
+\pagebreak
+
+\begin{figure}[h!]
 	\centering
 	\includegraphics[width=0.95\textwidth, keepaspectratio]{figures/as-graph.png}
 	\caption{A PlanetLab gépeitől az egyetem felé küldött csomagok által bejárt AS gráf}
 	\label{fig:as-graph}
 \end{figure}
 
-Az AS szám információ felhasználásával a \ref{fig:as-graph} ábrán látható gráf lett elkészítve. Az ábra adatforrása pár nap folyamatos traceroute mérések eredménye. A PlanetLab csatlakozott gépeiről a BME egyik gépe felé címzett útvonalak lettek aggregálva. A nyilak vastagsága az alapján növekszik, hány különböző ip cím pár köti össze a két AS csomópontot. Ha minden átmenő csomag azonos ip címeken halad keresztül akkor az vékony lesz, míg ha két AS között haladó csomagok több különböző ip cím párokon keresztül utaznak az vastagabban van ábrázolva.
 
-\begin{figure}[h]
-	\centering
-	\includegraphics[width=0.9\textwidth, keepaspectratio]{figures/as-hop-hist.png}
-	\caption{Az AS gráf csomópontjai között lévő útvonalak hosszának eloszlása}
-	\label{fig:ip-map}
-\end{figure}
+Az AS szám információ felhasználásával a \ref{fig:as-graph} ábrán látható gráf lett elkészítve. Az ábra adatforrása pár nap folyamatos traceroute mérések eredménye. A PlanetLab csatlakozott gépeiről a BME egyik gépe felé címzett útvonalak lettek aggregálva. A nyilak vastagsága az alapján növekszik, hány különböző IP cím pár közti össze a két AS csomópontot. Ha minden átmenő csomag azonos IP címeken halad keresztül akkor az vékony lesz, míg ha két AS között haladó csomagok több különböző IP cím párokon keresztül utaznak az vastagabban van ábrázolva.
 
-A \ref{fig:as-graph} ábráról leolvasható hogy mely AS-ek kiterjedtek geolokációs tekintetben. Ha ugyanis több különböző ip útvonal köt össze két AS-t akkor azok valószínűleg területileg is több ponton vannak összeköttetésben.
+A \ref{fig:as-graph} ábráról leolvasható, mely Autonóm Rendszerek földrajzilag kiterjedtek. Ha ugyanis több különböző IP útvonal köt össze két AS-t akkor azok valószínűleg területileg is több ponton vannak összeköttetésben.
 
 A \ref{fig:as-graph} ábrán az összes útvonal a BME AS2547-es csomópontjába irányul, amely a valóságban kizárólag a AS1955-ös HBONE-AS HUNGARNET-tel van összeköttetésben. Egyes hibás traceroute mérések azonban torzítják ezt. A legnagyobb fokszámú csomópont az AS20965 , amely az AS1955 legfontosabb szomszédja, az elvi 17-ből\footnote{Forrás: Európai Regionális Internetes Nyilvántartó Hivatal honlapja: \href{https://stat.ripe.net/widget/asn-neighbours\#w.resource=1955}{stat.ripe.net}}.
 
+%\begin{figure}[h!]
+%	\centering
+%	\includegraphics[width=0.95\textwidth, keepaspectratio]{figures/degree.png}
+%	\caption{Az IP gráf csomópontjainak fokszáma előfordulási sűrűségük függvényében}
+%	\label{fig:ip-degree}
+%\end{figure}
+
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.9\textwidth, keepaspectratio]{figures/ip_map.png}
+	\caption{A mérésben résztvevő IP címek geolokációs pozíciójai}
+	\label{fig:ip-map}
+\end{figure}
+
+Az IP csomópontok geolokációs adatokkal való felgazdagítását követően új ábrázolási mód vált elérhetővé az Internet szerkezetének a megfigyeléséhez. Ennek eredménye a \ref{fig:ip-map} ábrán látható. A mérések reprezentativitását bizonyítja az Internetes penetrációval rendelkező területek nagy részén látható mérésben résztvevő csomópontok sokasága.
+
+\pagebreak
 
 \section{Middlebox felderítés}
 A tanszéken végzett Internetes kutatásokhoz hozzáadott értéket jelentett a mérési rendszer. A kutatás középpontjában napjaink egyik Internetes trendje az úgynevezett Middlebox-ok voltak. Ez egy általános fogalom minden olyan hálózati eszközre vonatkozóan, amely beavatkozik és manipulálja a rajta átmenő forgalmat. Ilyen lehet a hagyományos tűzfal vagy terheléselosztó, de manapság újabb és újabb célra használják fel, néha beavatkozva a végpontok közötti kapcsolatba. Ez az Internet alapjait jelentő protokollok működésére akár nem kívánt hatással is lehet, ezért fontos kutatási téma napjainkban.
